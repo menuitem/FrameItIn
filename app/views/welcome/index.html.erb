@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby on Rails: Welcome aboard</title>
+    <style>
+      #dropArea {
+      width: 400px;
+      height: 300px;
+      border: 1px solid grey;
+      background: pink;
+      float: left;
+      }
+      #dropArea .over {
+        border: 3px dashed #000;
+      }
+    </style>
+</head>
+  </body>
+<article>
+  <style scoped>
+    video { transform: scaleX(-1); 
+      width: 400px;
+      height: 300px;
+    }
+    p { text-align: center; }
+    canvas {
+    margin: 2px;
+    }
+  </style>
+  <h1>FrameInIt</h1>
+  <section id="splash">
+    <p id="errorMessage">Loading...</p>
+  </section>
+  <section id="app" hidden>
+    <div id="dropArea" >Drop Here
+    </div>
+    <p><video id="monitor" autoplay></video> 
+    <p><input type="button"  id = "shootButton" value="Shoot">
+    	 <input type="button"  id = "shootXButton" value="Shoot 10 times">
+    	 <input type="button"  id = "shootInfinitiveButton" value="Shoot infinitive">
+  </section>
+  <section>
+    <span id = "snapshots"> </span>
+  </section>
+</article>
+  </body>
+</html>
