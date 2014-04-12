@@ -6,9 +6,9 @@
       #dropArea {
       width: 400px;
       height: 300px;
-      border: 1px solid grey;
-      background: pink;
+      border: 1px solid grey; 
       float: left;
+      z-index: -10;
       }
       #dropArea .over {
         border: 3px dashed #000;
@@ -32,8 +32,9 @@
     <p id="errorMessage">Loading...</p>
   </section>
   <section id="app" hidden>
-    <div id="dropArea" >Drop Here
-    </div>
+    <div id="dropArea" >
+    <canvas id="dropPic" width="160" height="120"></canvas>
+  </div>
     <p><video id="monitor" autoplay></video> 
     <p><input type="button"  id = "shootButton" value="Shoot">
     	 <input type="button"  id = "shootXButton" value="Shoot 10 times">
