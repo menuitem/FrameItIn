@@ -14,17 +14,9 @@
 //= require jquery_ujs
 //= require_tree .
 document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have to move loading js to the bottom of page
-
-  // this is redone code from http://dev.w3.org/2011/webrtc/editor/getusermedia.html
-  navigator.getMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                         navigator.mozGetUserMedia || navigator.msGetUserMedia);
-  navigator.getMedia({
-    video: true
-    // ,audio: true //want some audio??
-  }, gotStream, noStream);
    
   var video = document.getElementById('monitor');
-    function gotStream(stream) {
+  function gotStream(stream) {
     if (navigator.mozGetUserMedia) {
         video.mozSrcObject = stream;
     } else {
@@ -34,19 +26,11 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     document.getElementById('splash').hidden = true;
     document.getElementById('app').hidden = false;
   }
-
   function noStream() {
     document.getElementById('errorMessage').textContent = 'No camera available.';
   }
+  Media.initMedia(gotStream, noStream);
 
-  //downloading pictures
-  var download = function(e){
-    var eTarget = e.target || e.srcElement
-        ,image = eTarget.toDataURL("image/png").replace("image/png", "image/octet-stream");
-  
-    window.location.href=image; 
-  } 
-  //end downloading pictures
   var t;
   var takeInfinitiveShots = function(){
     t=setTimeout(function(){
@@ -149,94 +133,13 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     var numpics = pics.length;
     for(var i = 0; i < numpics ; i++){
       pics[i].addEventListener('dragstart', handleDragStart, false);
-      //pics[i].addEventListener('dragenter', handleDragEnter, false);
       pics[i].addEventListener('dragover', handleDragOver, false);
       pics[i].addEventListener('dragleave', handleDragLeave, false);
-      //pics[i].addEventListener('drop', handleDrop, false);
-      //pics[i].addEventListener('dragend', handleDragEnd, false);
-      
     }
-
     
     var area = document.getElementById('dropArea');
     area.addEventListener('dragenter', handleDragEnter, false);
     area.addEventListener('drop', handleDrop, false);
     area.addEventListener('dragover', handleDragOver, false);
-    // function handleDragStart(e) {
-    //   this.style.opacity = '0.4';  // this / e.target is the source node.
- 
-    //   e.dataTransfer.effectAllowed = 'copy';
-    //   e.dataTransfer.setData('text/html', this.innerHTML);
-
-    //   var area = document.getElementById('dropArea');
-    //   area.setAttribute('style', 'background:grey');
-    // }
-
-    // function handleDragEnd(e) {
-    //   this.style.opacity = '1'; 
-    //   var area = document.getElementById('dropArea');
-    //   area.setAttribute('style', 'background:pink'); // this / e.target is the source node.
-    // }
-
-    // function handleDragEnter(e) {
-    //   // this / e.target is the current hover target.
-    //   var area = document.getElementById('dropArea');
-    //   area.setAttribute('style', 'background:blue');
-    //   //area.classList.add('over');
-    // }
-
-    // function handleDragLeave(e) {
-    //   //this.classList.remove('over');  // this / e.target is previous target element.
-    //   var area = document.getElementById('dropArea');
-    //   //area.setAttribute('style', 'background:pink');
-    //   //area.classList.remove'over');
-    // }
-
-    // function handleDragOver(e) {
-    //   if (e.preventDefault) {
-    //     e.preventDefault(); // Necessary. Allows us to drop.
-    //   }
-
-    //   e.dataTransfer.dropEffect = 'copy';  // See the section on the DataTransfer object.
-
-    //   return false;
-    // }
-
-    // function handleDrop(e) {
-    //   // this / e.target is current target element.
-
-    //   if (e.stopPropagation) {
-    //     e.stopPropagation(); // stops the browser from redirecting.
-    //   }
-
-    //   // Don't do anything if dropping the same column we're dragging.
-    //   //if (dragSrcEl != this) {
-    //     // Set the source column's HTML to the HTML of the column we dropped on.
-    //     document.getElementById('dropArea').innerHTML = this.innerHTML;
-    //     this.innerHTML = e.dataTransfer.getData('text/html');
-    //   //}
-    //    //var src = ev.dataTransfer.getData('text/html');
-    //    //e.target.appendChild(document.getElementById(src));
-    //    //e.stopPropagation();
-    //    return false;
-
-    // }
-
-    // //add draggable event listeners to the small pictures
-    // var pics = document.getElementsByClassName('smallpic');
-    // var numpics = pics.length;
-    // for(var i = 0; i < numpics ; i++){
-    //   pics[i].addEventListener('dragstart', handleDragStart, false);
-    //   //pics[i].addEventListener('dragenter', handleDragEnter, false);
-    //   pics[i].addEventListener('dragover', handleDragOver, false);
-    //   pics[i].addEventListener('dragleave', handleDragLeave, false);
-    //   //pics[i].addEventListener('drop', handleDrop, false);
-    //   pics[i].addEventListener('dragend', handleDragEnd, false);
-      
-    // }
-    // var area = document.getElementById('dropArea');
-    // area.addEventListener('dragenter', handleDragEnter, false);
-    // area.addEventListener('drop', handleDrop, false);
-    //end drag 
-
+    
 });//end DOMContentLoaded
