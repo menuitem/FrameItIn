@@ -28,8 +28,8 @@
                   //create new canvas element 
                   var snap = document.createElement("canvas");
                   //change size of snapshot
-                  canvasW = video.videoWidth /1.8  ;
-                  canvasH = video.videoHeight /1.8;
+                  canvasW = video.videoWidth /1.7  ;
+                  canvasH = video.videoHeight /1.7;
                   snap.setAttribute('width',canvasW);
                   snap.setAttribute('height',canvasH);
                   snap.getContext('2d').drawImage(video,0,0,canvasW,canvasH);

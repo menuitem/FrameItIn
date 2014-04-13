@@ -58,34 +58,91 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     }
 
     function handleDragEnd(e) {
-      //convert the selected small image to a larger canvas element
-      //and display it in the larger section at the top of the page
-      var area = document.getElementById('dropArea');
-      area.setAttribute('style', 'background:pink');
+      var image = e.target; 
+      //using createjs library, which allows filters on the images
+      var bmpColour = new createjs.Bitmap(image);
+      var bmp = new createjs.Bitmap(image);
       var picarea = document.getElementById('dropPic');
-      var ctx = picarea.getContext('2d');
-      ctx.drawImage(e.target, 10,10);
-      var url = picarea.toDataURL();
-      var newImg = document.createElement("img");
-      newImg.src = url;
+      stage = new createjs.Stage(picarea)
+      //draw originally chosen image, in normal colour;
+      bmp.cache(0, 0, image.width*2.8, image.height*2.8); // color filters don't change the bounds.
+      stage.addChild(bmp);   
+      stage.update();
 
-      //create a download link to save picture to file on computer
-      var link = document.getElementById('link');
-      link.setAttribute("download", "testimage.png");
-      link.setAttribute("href", url);
-    }
+      document.getElementById("returncolour").addEventListener('click', returnColour, false);
+      document.getElementById("convertgrey").addEventListener('click', turnGreyScale, false);
+      document.getElementById("convertsepia").addEventListener('click', turnSepia, false);
+      document.getElementById("link").addEventListener('click', downloadPic, false);
+
+
+      function turnGreyScale() {
+        //apply a greyscale filter to the image
+        var greyScaleFilter = new createjs.ColorMatrixFilter([
+          0.33, 0.33, 0.33, 0, 0, // red
+          0.33, 0.33, 0.33, 0, 0, // green
+          0.33, 0.33, 0.33, 0, 0, // blue
+          0, 0, 0, 1, 0  // alpha
+        ]);       
+        bmp.filters = [greyScaleFilter];
+        bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
+        stage.update();        
+      }
+
+      function turnSepia() {
+        //apply a sepia image to the filter
+        var greyScaleFilter = new createjs.ColorMatrixFilter([
+          0.39, 0.77, 0.19, 0, 0, // red component
+          0.35, 0.68, 0.17, 0, 0, // green component
+          0.27, 0.53, 0.13, 0, 0, // blue component
+          0, 0, 0, 1, 0  // alpha 
+        ]);       
+        bmp.filters = [greyScaleFilter];
+        bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
+        stage.update();        
+      }
+
+      function returnColour(){
+        //return image to original
+        bmp = new createjs.Bitmap(image);
+        bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
+        stage.addChild(bmp);
+        stage.update();
+      }
+
+      function downloadPic(){
+        //convert canvas to an img, including a url to the image
+        //this url is then used for the download link
+        var picarea = document.getElementById('dropPic');
+        var url = picarea.toDataURL();
+        var newImg = document.createElement("img");
+        newImg.src = url;
+        var link = document.getElementById('link');
+        link.setAttribute("download", "testimage.png");
+        link.setAttribute("href", url);
+      }
+
+    }// end of dragEnd function
 
     var pics = document.getElementsByClassName('smallpic');
     var numpics = pics.length;
     for(var i = 0; i < numpics ; i++){
       pics[i].addEventListener('dragend', handleDragEnd, false);   
     }
-  }
-    document.getElementById("shootButton").addEventListener("click", snapShot, false);
+  } // end of snapshot function
+
+  document.getElementById("shootButton").addEventListener("click", snapShot, false);
     // no worries, buttons yet not workin but it is fine
     // we shoud think about some range scrollbar instead of button 
-    document.getElementById("shootXButton").addEventListener("click", function(){alert("we are not working yet..")});
+  document.getElementById("shootXButton").addEventListener("click", function(){alert("we are not working yet..")});
     // document.getElementById("shootInfinitiveButton").addEventListener("click", snapShot)
 
+  //the following uses the screenfull api, and will display a fullscreem, if 
+  //supported by the browser
+  var elem = document.getElementById('dropArea');
+  document.getElementById('fullscreen').addEventListener('click', function () {
+    if (screenfull.enabled) {
+      screenfull.request(elem);
+    }
+  });
     
 });//end DOMContentLoaded

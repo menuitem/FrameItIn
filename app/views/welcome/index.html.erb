@@ -31,15 +31,20 @@
   <section id="splash">
     <p id="errorMessage">Loading...</p>
   </section>
+  <a href="#" id='link'>Download Picture</a>
+    <a href="#" id="convertgrey">Convert To GreyScale</a> |
+    <a href="#" id="convertsepia">Convert To Sepia</a> |
+    <a href="#" id="returncolour">Return To Colour</a> |
+    <a href="#" id='fullscreen'>View Final Image</a>
   <section id="app" hidden>
     <div id="dropArea" >
-      <a id='link' href="#" >Download Picture</a>
-    <canvas id="dropPic" width="400" height="300"></canvas>
-  </div>
-    <p><video id="monitor" autoplay></video> 
+      <canvas id="dropPic" width="360" height="260"></canvas> 
+    </div>
+    <p><video id="monitor" autoplay></video></p>
     <p><input type="button"  id = "shootButton" value="Shoot">
     	 <input type="button"  id = "shootXButton" value="Shoot 10 times">
     	 <input type="button"  id = "shootInfinitiveButton" value="Shoot infinitive">
+    </p>
   </section>
   <section>
     <span id = "snapshots"> </span>
