@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
       var ctx = picarea.getContext('2d');
       //get the pixels of the image of chosen picture
       var chosenPic = e.target.getContext('2d').getImageData(0, 0, 160, 120);
+      
       //create a copy of the image in the larger canvas area
       ctx.putImageData(chosenPic, 10, 10);
              // this / e.target is the source node.
@@ -88,14 +89,12 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     function handleDragStart(e) {
       this.style.opacity = '0.4';  // this / e.target is the source node.
  
-      e.dataTransfer.effectAllowed = 'copy';
-      e.dataTransfer.setData('text/html', this);
+      //e.dataTransfer.effectAllowed = 'copy';
+      //e.dataTransfer.setData('text/html', this);
 
       var area = document.getElementById('dropArea');
       area.setAttribute('style', 'background:grey');
     }
-
-    
 
     function handleDragEnter(e) {
       e.preventDefault();
@@ -113,16 +112,12 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     function handleDragOver(e) {
       if (e.preventDefault) {
         e.preventDefault(); // Necessary. Allows us to drop.
-      }
-
-      e.dataTransfer.dropEffect = 'copy';  
+      }  
       return false;
     }
 
     function handleDrop(e) {
        e.stopPropagation();
-       var picarea = document.getElementById('dropPic');
-      picarea.setAttribute('style', 'transform: scale(2,4)');
        return false;
 
     }
