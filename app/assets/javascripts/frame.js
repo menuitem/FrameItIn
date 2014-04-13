@@ -25,18 +25,24 @@
       takeShot: function(video){
           if (video.readyState) {
               try {
-                //create new canvas element 
+                  //create new canvas element 
                   var snap = document.createElement("canvas");
-                //change size of snapshot
-                  canvasW = video.videoWidth /4 ;
-                  canvasH = video.videoHeight /4;
+                  //change size of snapshot
+                  canvasW = video.videoWidth /1.8  ;
+                  canvasH = video.videoHeight /1.8;
                   snap.setAttribute('width',canvasW);
                   snap.setAttribute('height',canvasH);
                   snap.getContext('2d').drawImage(video,0,0,canvasW,canvasH);
                   snap.setAttribute('draggable', 'true');
-                  snap.classList.add("smallpic");
-                  snap.addEventListener("dblclick",download); //double click to download picture
-                  document.getElementById("snapshots").appendChild(snap);
+                  //convert canvas snaphot to an img
+                  var url = snap.toDataURL();
+                  var smallImg = document.createElement("img");
+                  smallImg.src = url;
+                  smallImg.setAttribute("width", "160px");
+                  smallImg.setAttribute("height", "120px");
+                  smallImg.classList.add("smallpic");
+                  document.getElementById("snapshots").appendChild(smallImg);
+
                   return snap;
                 } catch (e) {
                     document.getElementById('splash').hidden = false;

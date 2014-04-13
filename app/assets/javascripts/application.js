@@ -58,20 +58,23 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     }
 
     function handleDragEnd(e) {
-      this.style.opacity = '1'; 
+      //convert the selected small image to a larger canvas element
+      //and display it in the larger section at the top of the page
       var area = document.getElementById('dropArea');
       area.setAttribute('style', 'background:pink');
       var picarea = document.getElementById('dropPic');
       var ctx = picarea.getContext('2d');
-      //get the pixels of the image of chosen picture
-      var chosenPic = e.target.getContext('2d').getImageData(0, 0, 160, 120);
-      
-      //create a copy of the image in the larger canvas area
-      ctx.putImageData(chosenPic, 10, 10);
-             // this / e.target is the source node.
+      ctx.drawImage(e.target, 10,10);
+      var url = picarea.toDataURL();
+      var newImg = document.createElement("img");
+      newImg.src = url;
+
+      //create a download link to save picture to file on computer
+      var link = document.getElementById('link');
+      link.setAttribute("download", "testimage.png");
+      link.setAttribute("href", url);
     }
 
-    //add draggable event listeners to the small pictures
     var pics = document.getElementsByClassName('smallpic');
     var numpics = pics.length;
     for(var i = 0; i < numpics ; i++){
@@ -84,58 +87,5 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     document.getElementById("shootXButton").addEventListener("click", function(){alert("we are not working yet..")});
     // document.getElementById("shootInfinitiveButton").addEventListener("click", snapShot)
 
-
-
-    //draggable events
-    function handleDragStart(e) {
-      this.style.opacity = '0.4';  // this / e.target is the source node.
- 
-      //e.dataTransfer.effectAllowed = 'copy';
-      //e.dataTransfer.setData('text/html', this);
-
-      var area = document.getElementById('dropArea');
-      area.setAttribute('style', 'background:grey');
-    }
-
-    function handleDragEnter(e) {
-      e.preventDefault();
-
-      var area = document.getElementById('dropArea');
-      area.setAttribute('style', 'background:blue');
-      return true;
-    }
-
-    function handleDragLeave(e) {
-        var area = document.getElementById('dropArea');
- 
-    }
-
-    function handleDragOver(e) {
-      if (e.preventDefault) {
-        e.preventDefault(); // Necessary. Allows us to drop.
-      }  
-      return false;
-    }
-
-    function handleDrop(e) {
-       e.stopPropagation();
-       return false;
-
-    }
-
-    
-
-    var pics = document.getElementsByClassName('smallpic');
-    var numpics = pics.length;
-    for(var i = 0; i < numpics ; i++){
-      pics[i].addEventListener('dragstart', handleDragStart, false);
-      pics[i].addEventListener('dragover', handleDragOver, false);
-      pics[i].addEventListener('dragleave', handleDragLeave, false);
-    }
-    
-    var area = document.getElementById('dropArea');
-    area.addEventListener('dragenter', handleDragEnter, false);
-    area.addEventListener('drop', handleDrop, false);
-    area.addEventListener('dragover', handleDragOver, false);
     
 });//end DOMContentLoaded
