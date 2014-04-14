@@ -11,7 +11,34 @@
  *= require_self
  *= require_tree .
  */
+ /*require bootstrap/dist/css/bootstrap*/
+video {
+			transform: scaleX(-1); 
+			width: 400px;
+			height: 300px;
+}
 
- #dropPic {
- 		margin: 20px;
- }
+p { 
+			text-align: center;
+}
+.btn{
+			margin-bottom: 2px;
+}
+canvas {
+ 			margin: 2px;
+}
+
+#dropPic {
+ 			margin: 20px;
+}
+
+#dropArea {
+      width: 400px;
+      height: 300px;
+      border: 1px solid grey; 
+      z-index: -10;
+}
+
+#dropArea .over {
+      border: 3px dashed #000;
+}

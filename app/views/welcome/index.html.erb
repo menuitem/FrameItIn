@@ -2,52 +2,36 @@
 <html>
   <head>
     <title>Ruby on Rails: Welcome aboard</title>
-    <style>
-      #dropArea {
-      width: 400px;
-      height: 300px;
-      border: 1px solid grey; 
-      float: left;
-      z-index: -10;
-      }
-      #dropArea .over {
-        border: 3px dashed #000;
-      }
-    </style>
 </head>
   </body>
 <article>
-  <style scoped>
-    video { transform: scaleX(-1); 
-      width: 400px;
-      height: 300px;
-    }
-    p { text-align: center; }
-    canvas {
-    margin: 2px;
-    }
-  </style>
-  <h1>FrameInIt</h1>
   <section id="splash">
     <p id="errorMessage">Loading...</p>
   </section>
-  <a href="#" id='link'>Download Picture</a>
-    <a href="#" id="convertgrey">Convert To GreyScale</a> |
-    <a href="#" id="convertsepia">Convert To Sepia</a> |
-    <a href="#" id="returncolour">Return To Colour</a> |
-    <a href="#" id='fullscreen'>View Final Image</a>
   <section id="app" hidden>
-    <div id="dropArea" >
-      <canvas id="dropPic" width="360" height="260"></canvas> 
+    <div class="row">
+          <p><video id="monitor" autoplay></video>
+          <p><input type="button"  id = "shootButton" value="Shoot" class="btn btn-primary">
+              <input type="button"  id = "shootXButton" value="Shoot 10 times" class="btn btn-primary">
+              <input type="button"  id = "shootInfinitiveButton" value="Shoot infinitive" class="btn btn-primary">
     </div>
-    <p><video id="monitor" autoplay></video></p>
-    <p><input type="button"  id = "shootButton" value="Shoot">
-    	 <input type="button"  id = "shootXButton" value="Shoot 10 times">
-    	 <input type="button"  id = "shootInfinitiveButton" value="Shoot infinitive">
-    </p>
-  </section>
-  <section>
-    <span id = "snapshots"> </span>
+    <div class="row">
+      <span id = "snapshots"> </span>
+    <div class="row">
+    <div class="row">
+      <div class="row">
+           <p><a href="#" id='link' class="btn btn-primary" role="button">Download Picture</a>
+            <a href="#" id="convertgrey" class="btn btn-primary" role="button">Convert To GreyScale</a>
+            <a href="#" id="convertsepia" class="btn btn-primary" role="button">Convert To Sepia</a>
+            <a href="#" id="returncolour" class="btn btn-primary" role="button">Return To Colour</a>
+            <a href="#" id='fullscreen' class="btn btn-primary" role="button">View Final Image</a>
+      <div>
+      <div class="row">
+            <div id="dropArea" class="center-block">
+              <canvas id="dropPic" width="360" height="260"></canvas> 
+            </div>
+      </div>
+    </div>
   </section>
 </article>
   </body>

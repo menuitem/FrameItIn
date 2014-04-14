@@ -11,11 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require bootstrap/dist/js/bootstrap
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require_tree .
 document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have to move loading js to the bottom of page
-   
   var video = document.getElementById('monitor');
   function gotStream(stream) {
     if (navigator.mozGetUserMedia) {
@@ -75,7 +74,8 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
       document.getElementById("link").addEventListener('click', downloadPic, false);
 
 
-      function turnGreyScale() {
+      function turnGreyScale(e) {
+        e.preventDefault();
         //apply a greyscale filter to the image
         var greyScaleFilter = new createjs.ColorMatrixFilter([
           0.33, 0.33, 0.33, 0, 0, // red
@@ -88,7 +88,8 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
         stage.update();        
       }
 
-      function turnSepia() {
+      function turnSepia(e) {
+        e.preventDefault();
         //apply a sepia image to the filter
         var greyScaleFilter = new createjs.ColorMatrixFilter([
           0.39, 0.77, 0.19, 0, 0, // red component
@@ -101,7 +102,8 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
         stage.update();        
       }
 
-      function returnColour(){
+      function returnColour(e){
+        e.preventDefault();
         //return image to original
         bmp = new createjs.Bitmap(image);
         bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
@@ -109,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
         stage.update();
       }
 
-      function downloadPic(){
+      function downloadPic(e){
         //convert canvas to an img, including a url to the image
         //this url is then used for the download link
         var picarea = document.getElementById('dropPic');

@@ -1,0 +1,19 @@
+{
+  "name": "FrameItIn",
+  "version": "0.0.1",
+  "authors": [
+    "Jenny Cooper <jennifer.cooper@student.ncirl.ie>",
+    "Lucjan Stepien <lucjan.stepien@student.ncirl.ie>"
+  ],
+   "dependencies": {
+      "bootstrap":"~3.0.0"},
+  "description": "ARIA CA2 Project",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
