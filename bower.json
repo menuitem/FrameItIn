@@ -5,8 +5,13 @@
     "Jenny Cooper <jennifer.cooper@student.ncirl.ie>",
     "Lucjan Stepien <lucjan.stepien@student.ncirl.ie>"
   ],
-   "dependencies": {
-      "bootstrap":"~3.0.0"},
+  "dependencies": {
+    "bootstrap": "~3.0.0",
+    "jasmine": "~2.0.0",
+    "screenfull": "~1.1.1",
+    "EaselJS": "*",
+    "bootstrap.min": "http://bootswatch.com/superhero/bootstrap.min.css"
+  },
   "description": "ARIA CA2 Project",
   "license": "MIT",
   "ignore": [

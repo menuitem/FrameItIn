@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require bootstrap/dist/js/bootstrap
+//= require EaselJS/lib/easeljs-0.7.1.min
+//= require screenfull/dist/screenfull
 //= require jquery_ujs
 //= require_tree .
 document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have to move loading js to the bottom of page

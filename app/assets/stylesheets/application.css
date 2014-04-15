@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap.min/index.css
  */
  /*require bootstrap/dist/css/bootstrap*/
 video {
@@ -21,10 +22,8 @@ video {
 p { 
 			text-align: center;
 }
-.btn{
-			margin-bottom: 2px;
-}
-canvas {
+
+span img {
  			margin: 2px;
 }
 
@@ -41,4 +40,8 @@ canvas {
 
 #dropArea .over {
       border: 3px dashed #000;
+}
+
+body{
+			margin-top: 60px !important;;
 }
