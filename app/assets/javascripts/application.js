@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
   function noStream() {
     document.getElementById('errorMessage').textContent = 'No camera available.';
   }
-  Media.initMedia(gotStream, noStream);
+  video?Media.initMedia(gotStream, noStream):{};
 
   var t;
   var takeInfinitiveShots = function(){
@@ -133,20 +133,23 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
       pics[i].addEventListener('dragend', handleDragEnd, false);   
     }
   } // end of snapshot function
-
-  document.getElementById("shootButton").addEventListener("click", snapShot, false);
+  document.getElementById("shootButton")?
+     document.getElementById("shootButton").addEventListener("click", snapShot, false):
+     {};
     // no worries, buttons yet not workin but it is fine
     // we shoud think about some range scrollbar instead of button 
-  document.getElementById("shootXButton").addEventListener("click", function(){alert("we are not working yet..")});
+  // document.getElementById("shootXButton").addEventListener("click", function(){alert("we are not working yet..")});
     // document.getElementById("shootInfinitiveButton").addEventListener("click", snapShot)
 
   //the following uses the screenfull api, and will display a fullscreem, if 
   //supported by the browser
   var elem = document.getElementById('dropArea');
-  document.getElementById('fullscreen').addEventListener('click', function () {
-    if (screenfull.enabled) {
-      screenfull.request(elem);
-    }
-  });
+  if (elem){
+    document.getElementById('fullscreen').addEventListener('click', function () {
+      if (screenfull.enabled) {
+        screenfull.request(elem);
+      }
+    });
+  }
     
 });//end DOMContentLoaded

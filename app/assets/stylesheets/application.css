@@ -10,9 +10,8 @@
  *
  *= require_self
  *= require_tree .
- *= require bootstrap.min/index.css
+ *= require bootswatch/superhero/bootstrap
  */
- /*require bootstrap/dist/css/bootstrap*/
 video {
 			transform: scaleX(-1); 
 			width: 400px;
@@ -42,6 +41,9 @@ span img {
       border: 3px dashed #000;
 }
 
-body{
-			margin-top: 60px !important;;
+.login{
+			max-width: 480px
+}
+.login input{
+	max-width: 450px
 }

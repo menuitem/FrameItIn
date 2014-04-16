@@ -52,7 +52,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">FrameInIt</a>
+          <%= link_to 'FrameInIt', root_path, class: "navbar-brand" %>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -62,7 +62,7 @@
             <% if !current_user %>
             <li><%= link_to 'Sign In', new_user_session_path %></li>
             <% else %>
-              <li><%= link_to current_user.email, edit_user_registration_path %></li>
+              <li><%= link_to current_user.email, edit_user_registration_path, class: "glyphicon glyphicon-user" %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
             <% end %>
           </ul>
@@ -72,18 +72,19 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
+
         <div class="span12">
-	<p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+	        <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
 
           <%= yield %>
         </div>
       </div><!--/row-->
+    </div> <!-- /container -->
 
       <footer>
         <p>&copy; FrameItIn 2014</p>
       </footer>
 
-    </div> <!-- /container -->
   </body>
 </html>
