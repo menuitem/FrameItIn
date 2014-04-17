@@ -40,10 +40,23 @@ span img {
 #dropArea .over {
       border: 3px dashed #000;
 }
+.smallpic{
+	width: 160px;
+	height: 120px;
+}
 
+body{
+	margin-top: 60px !important;w
+}
+#snapshots div{
+	position: relative;
+}
+/*Device*/
 .login{
 			max-width: 480px
 }
 .login input{
-	max-width: 450px
+			max-width: 450px
 }
+/*end Device*/
+

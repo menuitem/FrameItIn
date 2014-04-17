@@ -16,6 +16,7 @@
 //= require screenfull/dist/screenfull
 //= require jquery_ujs
 //= require_tree .
+
 document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have to move loading js to the bottom of page
   var video = document.getElementById('monitor');
   function gotStream(stream) {
@@ -117,12 +118,13 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
         //convert canvas to an img, including a url to the image
         //this url is then used for the download link
         var picarea = document.getElementById('dropPic');
-        var url = picarea.toDataURL();
-        var newImg = document.createElement("img");
-        newImg.src = url;
+        // var newImg = FrameItIn.canvasToImage(picarea);
+        // var url = picarea.toDataURL();
+        // var newImg = document.createElement("img");
+        // newImg.src = url;
         var link = document.getElementById('link');
         link.setAttribute("download", "testimage.png");
-        link.setAttribute("href", url);
+        link.setAttribute("href", picarea.toDataURL());
       }
 
     }// end of dragEnd function

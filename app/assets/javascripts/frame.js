@@ -21,29 +21,96 @@
         window.location.href=image; 
       }
       
+      //Capturing picture from camera to canvas 
+      var getCanvasFromCamera = function(vid){
+        var video = vid,
+            canvas = document.createElement("canvas"),
+            //change size of snapshot
+            canvasW = video.videoWidth /1.7,
+            canvasH = video.videoHeight /1.7;
+        
+        canvas.setAttribute('width',canvasW);
+        canvas.setAttribute('height',canvasH);
+        canvas.getContext('2d').drawImage(video,0,0,canvasW,canvasH);
+        // canvas.setAttribute('draggable', 'true');
+        return canvas
+      }
+
+      //convert canvas snaphot to an img
+      var canvasToImage = function(canvas){
+        var url = canvas.toDataURL();
+        var smallImg = document.createElement("img");
+        smallImg.src = url;
+        return smallImg;
+      }
+      //creating menu with select, download and upload buttons. parameter button size in px 
+      var getLinks = function(buttonSize){
+        var buttonSize = buttonSize || 32;
+        var linkMenuDiv = document.createElement("div");
+          linkMenuDiv.hidden = true;
+        var selectButton = document.createElement("button");
+          selectButton.classList.add("glyphicon-wrench");
+          selectButton.setAttribute("title", "Select")
+          linkMenuDiv.appendChild(selectButton);
+        var downloadButton = document.createElement("button");
+          downloadButton.classList.add("glyphicon"); 
+          downloadButton.classList.add("glyphicon-download-alt");
+          downloadButton.setAttribute("title", "Download")
+          linkMenuDiv.appendChild(downloadButton)
+        var uploadButton = document.createElement("button");
+          uploadButton.classList.add("glyphicon"); 
+          uploadButton.classList.add("glyphicon-cloud");
+          uploadButton.setAttribute("title", "Upload")
+          linkMenuDiv.appendChild(uploadButton)
+        var el = linkMenuDiv.firstChild;
+        while(el){
+          el.classList.add("glyphicon");
+          el.classList.add("btn");
+          el.classList.add("btn-primary");
+          el.setAttribute("data-toggle","tooltip"); //not working yet, will comeback later 
+          el.setAttribute("data-placement","top");
+          el.setAttribute("style", "font-size:"+buttonSize+"px;margin: 3px;");
+          el = el.nextSibling;
+        }
+        return linkMenuDiv;
+      }
+
     return{
+      canvasToImage: canvasToImage,
       takeShot: function(video){
           if (video.readyState) {
               try {
-                  //create new canvas element 
-                  var snap = document.createElement("canvas");
-                  //change size of snapshot
-                  canvasW = video.videoWidth /1.7  ;
-                  canvasH = video.videoHeight /1.7;
-                  snap.setAttribute('width',canvasW);
-                  snap.setAttribute('height',canvasH);
-                  snap.getContext('2d').drawImage(video,0,0,canvasW,canvasH);
-                  snap.setAttribute('draggable', 'true');
-                  //convert canvas snaphot to an img
-                  var url = snap.toDataURL();
-                  var smallImg = document.createElement("img");
-                  smallImg.src = url;
-                  smallImg.setAttribute("width", "160px");
-                  smallImg.setAttribute("height", "120px");
-                  smallImg.classList.add("smallpic");
-                  document.getElementById("snapshots").appendChild(smallImg);
-
-                  return snap;
+                  var canvas = getCanvasFromCamera(video);
+                  var image = canvasToImage(canvas)  
+                  var smallDivImage = document.createElement("div");
+                  smallDivImage.setAttribute("style","width:160px");
+                  smallDivImage.setAttribute("style","height:120px");
+                  smallDivImage.setAttribute("style", "display:inline-block;position:relative;");
+                  image.classList.add("smallpic");
+                  var links = getLinks(12); //button size in px
+                  smallDivImage.appendChild(image);
+                  $(smallDivImage).append(links);
+                  document.getElementById("snapshots").appendChild(smallDivImage);
+                  //Listeners to small images (show hide menu oon mouse in and out)
+                  smallDivImage.addEventListener("mouseenter",function(e) {
+                      var menu = e.target.firstChild.nextSibling;
+                      e.target.style.cursor="pointer";
+                      menu.setAttribute("style","position:absolute;left:0px;top:0px;");
+                      e.target.firstChild.opacity = 0.4;
+                      menu.hidden=false;
+                      if ($) { // if jQuery
+                        $(menu).hide().slideDown(500);
+                      }
+                  });
+                  smallDivImage.addEventListener("mouseleave",function(e) {
+                      var menu = e.target.firstChild.nextSibling                  
+                      if ($) { // if jQuery
+                        $(menu).slideUp(100);
+                      }
+                      menu.hidden=true;
+                  });
+                  
+                  return canvas;
                 } catch (e) {
                     document.getElementById('splash').hidden = false;
                     errorMessage.textContent = "Splash! Something went wrong..." + e;
