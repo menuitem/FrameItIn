@@ -72,6 +72,13 @@
           el.setAttribute("style", "font-size:"+buttonSize+"px;margin: 3px;");
           el = el.nextSibling;
         }
+        selectButton.addEventListener("click", function(e,container){
+          console.log(e.target.parentNode.parentNode.firstChild)
+          var img = e.target.parentNode.parentNode.firstChild;
+          var canvas = document.getElementById("dropPic");
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0)
+        });
         return linkMenuDiv;
       }
 

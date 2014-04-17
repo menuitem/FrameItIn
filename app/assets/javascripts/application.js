@@ -58,90 +58,41 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
       if (t!=null) clearTimeout(t);
       document.getElementsByTagName('input')[0].value="Shoot";
     }
-
-    function handleDragEnd(e) {
-      var image = e.target; 
-      //using createjs library, which allows filters on the images
-      var bmpColour = new createjs.Bitmap(image);
-      var bmp = new createjs.Bitmap(image);
-      var picarea = document.getElementById('dropPic');
-      stage = new createjs.Stage(picarea)
-      //draw originally chosen image, in normal colour;
-      bmp.cache(0, 0, image.width*2.8, image.height*2.8); // color filters don't change the bounds.
-      stage.addChild(bmp);   
-      stage.update();
-
-      document.getElementById("returncolour").addEventListener('click', returnColour, false);
-      document.getElementById("convertgrey").addEventListener('click', turnGreyScale, false);
-      document.getElementById("convertsepia").addEventListener('click', turnSepia, false);
-      document.getElementById("link").addEventListener('click', downloadPic, false);
-
-
-      function turnGreyScale(e) {
-        e.preventDefault();
-        //apply a greyscale filter to the image
-        var greyScaleFilter = new createjs.ColorMatrixFilter([
-          0.33, 0.33, 0.33, 0, 0, // red
-          0.33, 0.33, 0.33, 0, 0, // green
-          0.33, 0.33, 0.33, 0, 0, // blue
-          0, 0, 0, 1, 0  // alpha
-        ]);       
-        bmp.filters = [greyScaleFilter];
-        bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
-        stage.update();        
-      }
-
-      function turnSepia(e) {
-        e.preventDefault();
-        //apply a sepia image to the filter
-        var greyScaleFilter = new createjs.ColorMatrixFilter([
-          0.39, 0.77, 0.19, 0, 0, // red component
-          0.35, 0.68, 0.17, 0, 0, // green component
-          0.27, 0.53, 0.13, 0, 0, // blue component
-          0, 0, 0, 1, 0  // alpha 
-        ]);       
-        bmp.filters = [greyScaleFilter];
-        bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
-        stage.update();        
-      }
-
-      function returnColour(e){
-        e.preventDefault();
-        //return image to original
-        bmp = new createjs.Bitmap(image);
-        bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
-        stage.addChild(bmp);
-        stage.update();
-      }
-
-      function downloadPic(e){
+  } // end of snapshot function
+  
+  //listners to edtit pictures area
+  //listener to download
+  document.getElementById("link").addEventListener('click', function(e){
         //convert canvas to an img, including a url to the image
         //this url is then used for the download link
-        var picarea = document.getElementById('dropPic');
-        // var newImg = FrameItIn.canvasToImage(picarea);
-        // var url = picarea.toDataURL();
-        // var newImg = document.createElement("img");
-        // newImg.src = url;
-        var link = document.getElementById('link');
-        link.setAttribute("download", "testimage.png");
-        link.setAttribute("href", picarea.toDataURL());
-      }
-
-    }// end of dragEnd function
-
-    var pics = document.getElementsByClassName('smallpic');
-    var numpics = pics.length;
-    for(var i = 0; i < numpics ; i++){
-      pics[i].addEventListener('dragend', handleDragEnd, false);   
-    }
-  } // end of snapshot function
-  document.getElementById("shootButton")?
-     document.getElementById("shootButton").addEventListener("click", snapShot, false):
-     {};
-    // no worries, buttons yet not workin but it is fine
-    // we shoud think about some range scrollbar instead of button 
-  // document.getElementById("shootXButton").addEventListener("click", function(){alert("we are not working yet..")});
-    // document.getElementById("shootInfinitiveButton").addEventListener("click", snapShot)
+    var canvas = document.getElementById("dropPic")
+    e.target.setAttribute("download", "testimage.png");
+    e.target.setAttribute("href", canvas.toDataURL());
+  }, false);
+  //return to colour
+  document.getElementById("returncolour").addEventListener('click', function(e){
+    e.preventDefault();
+    var canv = document.getElementById("dropPic");
+    ImageEdit.returnColour(canv);
+  }, false);
+  
+  //listener to greyscale
+  document.getElementById("convertgrey").addEventListener('click', function(e){
+    e.preventDefault();
+    var canv = document.getElementById("dropPic");
+    ImageEdit(canv).turnGreyScale(canv);
+  }, false);
+  
+  //listener to Sepia
+  document.getElementById("convertsepia").addEventListener('click', function(e){
+    e.preventDefault();
+    var canv = document.getElementById("dropPic");
+    ImageEdit(canv).turnSepia(canv);
+  }, false);
+  
+document.getElementById("shootButton")?
+  document.getElementById("shootButton").
+  addEventListener("click", snapShot, false):{};
 
   //the following uses the screenfull api, and will display a fullscreem, if 
   //supported by the browser
@@ -153,5 +104,4 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
       }
     });
   }
-    
 });//end DOMContentLoaded
