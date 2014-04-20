@@ -53,12 +53,10 @@
           selectButton.setAttribute("title", "Select")
           linkMenuDiv.appendChild(selectButton);
         var downloadButton = document.createElement("button");
-          downloadButton.classList.add("glyphicon"); 
           downloadButton.classList.add("glyphicon-download-alt");
           downloadButton.setAttribute("title", "Download")
           linkMenuDiv.appendChild(downloadButton)
         var uploadButton = document.createElement("button");
-          uploadButton.classList.add("glyphicon"); 
           uploadButton.classList.add("glyphicon-cloud");
           uploadButton.setAttribute("title", "Upload")
           linkMenuDiv.appendChild(uploadButton)
@@ -67,11 +65,12 @@
           el.classList.add("glyphicon");
           el.classList.add("btn");
           el.classList.add("btn-primary");
-          el.setAttribute("data-toggle","tooltip"); //not working yet, will comeback later 
-          el.setAttribute("data-placement","top");
+          el.setAttribute("data-toggle","tooltip");
+          el.setAttribute("data-placement","bottom");
           el.setAttribute("style", "font-size:"+buttonSize+"px;margin: 3px;");
           el = el.nextSibling;
         }
+        //listener for small select button 
         selectButton.addEventListener("click", function(e,container){
           console.log(e.target.parentNode.parentNode.firstChild)
           var img = e.target.parentNode.parentNode.firstChild;
@@ -79,6 +78,28 @@
           var ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0)
         });
+        //listener for small upload button 
+        uploadButton.addEventListener("click", function(e){
+          var img = e.target.parentNode.parentNode.firstChild.src;
+          var dataURL = img.replace('data:image/png;base64,','')
+          this.disabled=true;
+            // console.log(dataURL);
+          if ($){ // if jQuery
+                  var data = {"picture[image_data]":img,
+                              "picture[public]":"false"
+                  }
+                  $(uploadButton).toggleClass("glyphicon-upload");
+                  $(linkMenuDiv).css("cursor", "progress");
+                  $.post("/pictures", data ,function(data){
+                    // console.log(data);
+                  $(uploadButton).hide();
+                  $(uploadButton).css("cursor", "default");
+
+                  }).fail(function(err){console.log(err)})
+               }else{
+                alsert("Need jQuery for this")
+               }
+        })
         return linkMenuDiv;
       }
 
@@ -101,7 +122,6 @@
                   //Listeners to small images (show hide menu oon mouse in and out)
                   smallDivImage.addEventListener("mouseenter",function(e) {
                       var menu = e.target.firstChild.nextSibling;
-                      e.target.style.cursor="pointer";
                       menu.setAttribute("style","position:absolute;left:0px;top:0px;");
                       e.target.firstChild.opacity = 0.4;
                       menu.hidden=false;

@@ -1,4 +1,4 @@
-var ImageEdit = (function(canvas){
+var ImageEdit = (function(){
 	// private
 	// var image = FrameItIn.canvasToImage(canvas);
 	
@@ -6,8 +6,7 @@ var ImageEdit = (function(canvas){
 		var image = FrameItIn.canvasToImage(img);
 		var bmp = new createjs.Bitmap(img),
   		stage = new createjs.Stage(img);
-		var bmp = new createjs.Bitmap(img),
-  		stage = new createjs.Stage(img);
+		
 		//apply a sepia image to the filter
     var sepiaScaleFilter = new createjs.ColorMatrixFilter([
     	0.39, 0.77, 0.19, 0, 0, // red component
@@ -22,8 +21,11 @@ var ImageEdit = (function(canvas){
 	
 	var turnGreyScale = function(img) {
  		var image = FrameItIn.canvasToImage(img);
-		var bmp = new createjs.Bitmap(image),
-			stage = new createjs.Stage(img);
+		var bmp = new createjs.Bitmap(img),
+			stage = new createjs.Stage(image);
+ 			console.log("image", image);
+			console.log("bmp", bmp);
+			console.log("stage", stage);
 		// apply a greyscale filter to the image
 		var greyScaleFilter = new createjs.ColorMatrixFilter([
 			0.33, 0.33, 0.33, 0, 0, // red

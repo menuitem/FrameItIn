@@ -1,8 +1,9 @@
 class PicturesController < ApplicationController
+  before_filter :authenticate_user!
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    @pictures = current_user.pictures
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
-    @picture = Picture.find(params[:id])
+    @picture = current_user.pictures.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class PicturesController < ApplicationController
   # GET /pictures/new
   # GET /pictures/new.json
   def new
-    @picture = Picture.new
+    @picture = current_user.pictures.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1/edit
   def edit
-    @picture = Picture.find(params[:id])
+    @picture = current_user.pictures.find(params[:id])
   end
 
   # POST /pictures
   # POST /pictures.json
   def create
-    @picture = Picture.new(params[:picture])
+    @picture = current_user.pictures.new(params[:picture])
 
     respond_to do |format|
       if @picture.save
@@ -56,7 +57,7 @@ class PicturesController < ApplicationController
   # PUT /pictures/1
   # PUT /pictures/1.json
   def update
-    @picture = Picture.find(params[:id])
+    @picture = current_user.pictures.find(params[:id])
 
     respond_to do |format|
       if @picture.update_attributes(params[:picture])
@@ -72,7 +73,7 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1
   # DELETE /pictures/1.json
   def destroy
-    @picture = Picture.find(params[:id])
+    @picture = current_user.pictures.find(params[:id])
     @picture.destroy
 
     respond_to do |format|

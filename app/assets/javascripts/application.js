@@ -60,8 +60,14 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     }
   } // end of snapshot function
   
-  //listners to edtit pictures area
-  //listener to download
+
+//the following uses the screenfull api, and will display a fullscreem, if 
+//supported by the browser
+var elem = document.getElementById('dropArea');
+if (elem){
+//listners to edtit pictures area
+//listener to download
+
   document.getElementById("link").addEventListener('click', function(e){
         //convert canvas to an img, including a url to the image
         //this url is then used for the download link
@@ -80,28 +86,27 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
   document.getElementById("convertgrey").addEventListener('click', function(e){
     e.preventDefault();
     var canv = document.getElementById("dropPic");
-    ImageEdit(canv).turnGreyScale(canv);
+    ImageEdit.turnGreyScale(canv);
   }, false);
   
   //listener to Sepia
   document.getElementById("convertsepia").addEventListener('click', function(e){
     e.preventDefault();
     var canv = document.getElementById("dropPic");
-    ImageEdit(canv).turnSepia(canv);
+    ImageEdit.turnSepia(canv);
   }, false);
   
-document.getElementById("shootButton")?
-  document.getElementById("shootButton").
-  addEventListener("click", snapShot, false):{};
 
-  //the following uses the screenfull api, and will display a fullscreem, if 
-  //supported by the browser
-  var elem = document.getElementById('dropArea');
-  if (elem){
+
     document.getElementById('fullscreen').addEventListener('click', function () {
       if (screenfull.enabled) {
         screenfull.request(elem);
       }
     });
   }
+
+  document.getElementById("shootButton")?
+  document.getElementById("shootButton").
+  addEventListener("click", snapShot, false):{};
+
 });//end DOMContentLoaded

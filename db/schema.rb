@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140415145757) do
+ActiveRecord::Schema.define(:version => 20140416190540) do
+
+  create_table "pictures", :force => true do |t|
+    t.string   "name"
+    t.text     "image_data"
+    t.boolean  "public"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "pictures", ["user_id"], :name => "index_pictures_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

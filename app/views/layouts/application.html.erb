@@ -60,6 +60,7 @@
             <li><%= link_to 'Sign In', new_user_session_path %></li>
             <% else %>
               <li><%= link_to current_user.email, edit_user_registration_path, class: "glyphicon glyphicon-user" %></li>
+              <li><%= link_to "My pics", pictures_path, class: "glyphicon glyphicon-cloud" %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
             <% end %>
           </ul>
@@ -71,9 +72,20 @@
       <div class="row-fluid">
 
         <div class="span12">
-	        <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-
+          <% if alert %>
+          <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Alert:</strong> 
+            <%= alert %>
+          </div>
+          <% end %>
+          <% if notice %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Notice:</strong> 
+            <%= notice %>
+          </div>
+          <% end %>
           <%= yield %>
         </div>
       </div><!--/row-->
