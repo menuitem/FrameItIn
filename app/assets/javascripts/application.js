@@ -67,7 +67,6 @@ var elem = document.getElementById('dropArea');
 if (elem){
 //listners to edtit pictures area
 //listener to download
-
   document.getElementById("link").addEventListener('click', function(e){
         //convert canvas to an img, including a url to the image
         //this url is then used for the download link

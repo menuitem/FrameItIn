@@ -14,6 +14,7 @@
   })();
 
   var FrameItIn = (function(){
+    
     //downloading pictures
       var download = function(e){
         var eTarget = e.target || e.srcElement
@@ -72,8 +73,8 @@
         }
         //listener for small select button 
         selectButton.addEventListener("click", function(e,container){
-          console.log(e.target.parentNode.parentNode.firstChild)
           var img = e.target.parentNode.parentNode.firstChild;
+          window.origPicture = img;
           var canvas = document.getElementById("dropPic");
           var ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0)
@@ -137,7 +138,7 @@
                       menu.hidden=true;
                   });
                   
-                  return canvas;
+                  // return canvas;
                 } catch (e) {
                     document.getElementById('splash').hidden = false;
                     errorMessage.textContent = "Splash! Something went wrong..." + e;
@@ -145,4 +146,4 @@
           }
         }
       }
-  })()
+  })();

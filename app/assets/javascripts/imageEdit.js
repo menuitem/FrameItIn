@@ -7,7 +7,6 @@ var ImageEdit = (function(){
 		var image = FrameItIn.canvasToImage(canv);
 		var bmp = new createjs.Bitmap(image);
     stage = new createjs.Stage(canv);
-  		console.log(bmp);
 		
 		//apply a sepia image to the filter
     var sepiaScaleFilter = new createjs.ColorMatrixFilter([
@@ -15,7 +14,8 @@ var ImageEdit = (function(){
       0.35, 0.68, 0.17, 0, 0, // green component
       0.27, 0.53, 0.13, 0, 0, // blue component
       0, 0, 0, 1, 0  // alpha 
-    ]);       
+    ]); 
+      
     bmp.filters = [sepiaScaleFilter];
     bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
     stage.addChild(bmp);
@@ -26,9 +26,9 @@ var ImageEdit = (function(){
  		var image = FrameItIn.canvasToImage(canv);
 		var bmp = new createjs.Bitmap(image),
 			stage = new createjs.Stage(canv);
- 			console.log("image", image);
-			console.log("bmp", bmp);
-			console.log("stage", stage);
+ 			// console.log("image", image);
+			// console.log("bmp", bmp);
+			// console.log("stage", stage);
 		// apply a greyscale filter to the image
 		var greyScaleFilter = new createjs.ColorMatrixFilter([
 			0.33, 0.33, 0.33, 0, 0, // red
@@ -43,13 +43,17 @@ var ImageEdit = (function(){
 	}
 
 	var returnColour = function(canv){
-		var image = FrameItIn.canvasToImage(canv);
-		var bmp = new createjs.Bitmap(image),
-    //return image to original
-    bmp = new createjs.Bitmap(image);
-    bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
-    stage.addChild(bmp);
-    stage.update();
+		
+    var picture = window.origPicture;
+    var ctx = canv.getContext('2d');
+    ctx.drawImage(picture, 0, 0);
+    
+    // var bmp = new createjs.Bitmap(picture);
+    // var canv = document.getElementById("dropPic");
+    // stage = new createjs.Stage(canv);
+    // bmp.cache(0, 0, bmp.width*3, bmp.height*3); // color filters don't change the bounds.
+    // stage.addChild(bmp);
+    // stage.update();
   }
 	
 var downloadPic = function(){
