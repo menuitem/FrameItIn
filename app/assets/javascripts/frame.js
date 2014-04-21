@@ -28,9 +28,8 @@
           $(actionLink).text(action);
           $(domEl).hide().slideDown(300);
           $(actionLink).on("click", function(e){
-            e.preventDefault();
             if ($(actionLink).text()== "Upload"){
-              console.log($(actionLink).text());
+              e.preventDefault();
               var fileName = getFileName(domEl);
               if (fileName.length != ""){
                 $(actionLink).text("Uploading")
@@ -41,11 +40,11 @@
               }
             }
             if ($(actionLink).text()== "Download"){
-              var link = $(domEl).find("a");
+              var link = $(domEl).find("a:first");
               var fileName=$(domEl).find("input").val()
                 if(fileName.length>3){
                   $(link).attr("download", fileName );
-                  $(link).attr("href", imgSrc.toDataURL());
+                  $(link).attr("href", imgSrc.src);
                   $(domEl).slideUp(100);
                 }
               }
@@ -151,28 +150,13 @@
           // var dataURL = img.replace('data:image/png;base64,','')
           this.disabled=true;
            showFileNameDiv(document.getElementById("fileNameDiv"), "Upload", imgData);
-          // if(uploadResult=0){
-          //   $(uploadButton).hide();
-          // }else{
-          // this.disabled=false;
-          // }       
-            // console.log(dataURL);
-          // if ($){ // if jQuery
-          //         var data = {"picture[image_data]":img,
-          //                     "picture[public]":"false"
-          //         }
-          //         $(uploadButton).toggleClass("glyphicon-upload");
-          //         $(linkMenuDiv).css("cursor", "progress");
-          //         $.post("/pictures", data ,function(data){
-          //           // console.log(data);
-          //         $(uploadButton).hide();
-          //         $(uploadButton).css("cursor", "default");
-
-          //         }).fail(function(err){console.log(err)})
-          //      }else{
-          //       alert("Need jQuery for this")
-          //      }
-        })
+        });
+        //listener for small download button 
+        downloadButton.addEventListener("click", function(e){
+          var imgData = e.target.parentNode.parentNode.firstChild;
+          // var dataURL = img.replace('data:image/png;base64,','')
+           showFileNameDiv(document.getElementById("fileNameDiv"), "Download", imgData);
+        });
         return linkMenuDiv;
       }
 

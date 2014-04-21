@@ -68,17 +68,8 @@ if (elem){
 //listners to edtit pictures area
 //listener to download
   document.getElementById("link").addEventListener('click', function(e){
-    var canvas = document.getElementById("dropPic");
+    var canvas = FrameItIn.canvasToImage(document.getElementById("dropPic"));
     FrameItIn.showFileNameDiv(document.getElementById("fileNameDiv"), "Download", canvas);
-      // var actionLink = ($("#fileNameDiv").find("a"));
-      // if ($(actionLink).text() == "Download"){
-      //   var fileName=$("#fileNameDiv").find("a").text()
-      //   if(fileName.length>3){
-      //     var canvas = document.getElementById("dropPic");
-      //     $(actionLink).attr("download", fileName );
-      //     $(actionLink).attr("href", canvas.toDataURL());
-      //   }
-      // }
   }, false);
   //return to colour
   document.getElementById("returncolour").addEventListener('click', function(e){
@@ -100,8 +91,6 @@ if (elem){
     var canv = document.getElementById("dropPic");
     ImageEdit.turnSepia(canv);
   }, false);
-  
-
 
     document.getElementById('fullscreen').addEventListener('click', function () {
       if (screenfull.enabled) {
