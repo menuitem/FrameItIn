@@ -51,12 +51,12 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
   }
     
   var snapShot = function(m) {
-    if(document.getElementsByTagName('input')[0].value == "Shoot"){
-      document.getElementsByTagName('input')[0].value="Stop";
+    if(document.getElementsByTagName('input')[1].value == "Shoot"){
+      document.getElementsByTagName('input')[1].value="Stop";
       takeInfinitiveShots();
     }else{
       if (t!=null) clearTimeout(t);
-      document.getElementsByTagName('input')[0].value="Shoot";
+      document.getElementsByTagName('input')[1].value="Shoot";
     }
   } // end of snapshot function
   
@@ -68,11 +68,17 @@ if (elem){
 //listners to edtit pictures area
 //listener to download
   document.getElementById("link").addEventListener('click', function(e){
-        //convert canvas to an img, including a url to the image
-        //this url is then used for the download link
-    var canvas = document.getElementById("dropPic")
-    e.target.setAttribute("download", "testimage.png");
-    e.target.setAttribute("href", canvas.toDataURL());
+    var canvas = document.getElementById("dropPic");
+    FrameItIn.showFileNameDiv(document.getElementById("fileNameDiv"), "Download", canvas);
+      // var actionLink = ($("#fileNameDiv").find("a"));
+      // if ($(actionLink).text() == "Download"){
+      //   var fileName=$("#fileNameDiv").find("a").text()
+      //   if(fileName.length>3){
+      //     var canvas = document.getElementById("dropPic");
+      //     $(actionLink).attr("download", fileName );
+      //     $(actionLink).attr("href", canvas.toDataURL());
+      //   }
+      // }
   }, false);
   //return to colour
   document.getElementById("returncolour").addEventListener('click', function(e){

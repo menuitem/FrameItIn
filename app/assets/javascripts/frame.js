@@ -21,7 +21,68 @@
             ,image = eTarget.toDataURL("image/png").replace("image/png", "image/octet-stream");
         window.location.href=image; 
       }
-      
+      var showFileNameDiv = function(domEl, action, imgSrc){
+        domEl.hidden=false;
+        if ($){ // if jQuery
+          var actionLink = $(domEl).find("a");
+          $(actionLink).text(action);
+          $(domEl).hide().slideDown(300);
+          $(actionLink).on("click", function(e){
+            if ($(actionLink).text()== "Upload"){
+              e.preventDefault();
+              console.log($(actionLink).text());
+              var fileName = getFileName(domEl);
+              if (fileName.length != ""){
+                $(actionLink).text("Uploading")
+                uploadToCloud(imgSrc, fileName);
+              }else{
+              // display message, validate etc.
+              alert(" file name cant be blank !"); //temp alert
+              }
+            }
+            if ($(actionLink).text()== "Download"){
+              // e.preventDefault();
+              var link = $(domEl).find("a");
+              var fileName=$(domEl).find("input").val()
+                if(fileName.length>3){
+                  $(link).attr("download", fileName );
+                  $(link).attr("href", imgSrc.toDataURL());
+                  $(domEl).slideUp(100);
+                }
+              }
+          })
+        }
+      }
+      var uploadToCloud = function(imgSrc, fileName){
+        if ($){ // if jQuery
+          $("body").css("cursor", "progress");
+          var data = {
+                      "picture[name]":fileName,
+                      "picture[image_data]":imgSrc,
+                      "picture[public]":"false"}
+          $.post("/pictures", data ,function(res){
+            $("#fileNameDiv").slideUp(100);
+            $("body").css("cursor", "default");
+          })
+            .fail(function(err){
+              console.log(err)
+              return err;
+            })
+        }else{
+          alert("Need jQuery do this")
+        }
+      }
+      var getFileName = function(domEl){
+        return $(domEl).find("input").val() 
+      }
+      var hideFileNameDiv = function(domEl){
+        if ($){ // if jQuery
+          $(divId).hide().slideUp(300);
+          return
+        }
+        divId.hidden=true;
+      }
+
       //Capturing picture from camera to canvas 
       var getCanvasFromCamera = function(vid){
         var video = vid,
@@ -81,30 +142,37 @@
         });
         //listener for small upload button 
         uploadButton.addEventListener("click", function(e){
-          var img = e.target.parentNode.parentNode.firstChild.src;
-          var dataURL = img.replace('data:image/png;base64,','')
+          var imgData = e.target.parentNode.parentNode.firstChild.src;
+          // var dataURL = img.replace('data:image/png;base64,','')
           this.disabled=true;
+           showFileNameDiv(document.getElementById("fileNameDiv"), "Upload", imgData);
+          // if(uploadResult=0){
+          //   $(uploadButton).hide();
+          // }else{
+          // this.disabled=false;
+          // }       
             // console.log(dataURL);
-          if ($){ // if jQuery
-                  var data = {"picture[image_data]":img,
-                              "picture[public]":"false"
-                  }
-                  $(uploadButton).toggleClass("glyphicon-upload");
-                  $(linkMenuDiv).css("cursor", "progress");
-                  $.post("/pictures", data ,function(data){
-                    // console.log(data);
-                  $(uploadButton).hide();
-                  $(uploadButton).css("cursor", "default");
+          // if ($){ // if jQuery
+          //         var data = {"picture[image_data]":img,
+          //                     "picture[public]":"false"
+          //         }
+          //         $(uploadButton).toggleClass("glyphicon-upload");
+          //         $(linkMenuDiv).css("cursor", "progress");
+          //         $.post("/pictures", data ,function(data){
+          //           // console.log(data);
+          //         $(uploadButton).hide();
+          //         $(uploadButton).css("cursor", "default");
 
-                  }).fail(function(err){console.log(err)})
-               }else{
-                alsert("Need jQuery for this")
-               }
+          //         }).fail(function(err){console.log(err)})
+          //      }else{
+          //       alert("Need jQuery for this")
+          //      }
         })
         return linkMenuDiv;
       }
 
     return{
+      showFileNameDiv: showFileNameDiv,
       canvasToImage: canvasToImage,
       takeShot: function(video){
           if (video.readyState) {
