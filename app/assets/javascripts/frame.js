@@ -24,12 +24,12 @@
       var showFileNameDiv = function(domEl, action, imgSrc){
         domEl.hidden=false;
         if ($){ // if jQuery
-          var actionLink = $(domEl).find("a");
+          var actionLink = $(domEl).find("a:first");
           $(actionLink).text(action);
           $(domEl).hide().slideDown(300);
           $(actionLink).on("click", function(e){
+            e.preventDefault();
             if ($(actionLink).text()== "Upload"){
-              e.preventDefault();
               console.log($(actionLink).text());
               var fileName = getFileName(domEl);
               if (fileName.length != ""){
@@ -41,7 +41,6 @@
               }
             }
             if ($(actionLink).text()== "Download"){
-              // e.preventDefault();
               var link = $(domEl).find("a");
               var fileName=$(domEl).find("input").val()
                 if(fileName.length>3){
@@ -51,6 +50,12 @@
                 }
               }
           })
+          var cancelLink = $(domEl).find("a:last");
+          $(cancelLink).on("click", function(e){
+            e.preventDefault();
+            $(domEl).find("input").val("");
+            $(domEl).slideUp(300);
+          }); 
         }
       }
       var uploadToCloud = function(imgSrc, fileName){
