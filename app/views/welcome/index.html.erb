@@ -13,16 +13,35 @@
       <div id = "snapshots" class = "snapshots"> </div>
     </div>
     <div class="row">
+      <!--
       <div class="row">
-           <p><a href="#" id='link' class="btn btn-primary" role="button">Download Picture</a>
-            <a href="#" id="convertgrey" class="btn btn-primary" role="button">Convert To GreyScale</a>
-            <a href="#" id="convertsepia" class="btn btn-primary" role="button">Convert To Sepia</a>
-            <a href="#" id="returncolour" class="btn btn-primary" role="button">Return To Colour</a>
-            <a href="#" id='fullscreen' class="btn btn-primary" role="button">View Final Image</a>
+           <p><a href="#" id='link' class="btn btn-primary" role="button">Save</a>
+            <a href="#" id="convertgrey" class="btn btn-primary" role="button">GreyScale</a>
+            <a href="#" id="convertsepia" class="btn btn-primary" role="button">Sepia</a>
+            <a href="#" id="brighten" class="btn btn-primary" role="button">Brighten</a>
+            <a href="#" id="darken" class="btn btn-primary" role="button">Darken</a>
+            <a href="#" id="drawblackborder" class="btn btn-primary" role="button">Black Border</a>
+            <a href="#" id="drawwhiteborder" class="btn btn-primary" role="button">White Border</a>
+            <a href="#" id="returncolour" class="btn btn-primary" role="button">Undo All</a>
+            <a href="#" id='fullscreen' class="btn btn-primary" role="button">View Image</a>
       </div>
+    -->
       <div class="row">
             <div id="dropArea" class="center-block">
-              <canvas id="dropPic" width="360" height="260"></canvas> 
+              <p>            
+                <a href="#" id="convertgrey" class="btn btn-warning" role="button">GreyScale</a>
+                <a href="#" id="convertsepia" class="btn btn-warning" role="button">Sepia</a>
+                <a href="#" id="brighten" class="btn btn-warning" role="button">Brighten</a>
+                <a href="#" id="darken" class="btn btn-warning" role="button">Darken</a>
+                <a href="#" id='fullscreen' class="btn btn-warning" role="button">View Image</a>          
+              </p>
+              <canvas id="dropPic" width="400" height="300"></canvas> 
+              <p>       
+                <a href="#" id="returncolour" class="btn btn-warning" role="button">Undo All</a>
+                <a href="#" id="drawblackborder" class="btn btn-warning" role="button">Black Border</a>
+                <a href="#" id="drawwhiteborder" class="btn btn-warning" role="button">White Border</a>
+                <a href="#" id='link' class="btn btn-warning" role="button">Save</a>
+              </p>
             </div>
       </div>
     </div>

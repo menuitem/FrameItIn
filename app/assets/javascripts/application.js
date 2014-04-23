@@ -92,6 +92,34 @@ if (elem){
     ImageEdit.turnSepia(canv);
   }, false);
 
+  //listener to Brighten
+  document.getElementById("brighten").addEventListener('click', function(e){
+    e.preventDefault();
+    var canv = document.getElementById("dropPic");
+    ImageEdit.brighten(canv);
+  }, false);
+
+  //listener to Darken
+  document.getElementById("darken").addEventListener('click', function(e){
+    e.preventDefault();
+    var canv = document.getElementById("dropPic");
+    ImageEdit.darken(canv);
+  }, false);
+
+  //listener to Draw Border
+  document.getElementById("drawblackborder").addEventListener('click', function(e){
+    e.preventDefault();
+    var canv = document.getElementById("dropPic");
+    ImageEdit.drawBlackBorder(canv);
+  }, false);
+
+  //listener to Draw Border
+  document.getElementById("drawwhiteborder").addEventListener('click', function(e){
+    e.preventDefault();
+    var canv = document.getElementById("dropPic");
+    ImageEdit.drawWhiteBorder(canv);
+  }, false);
+
     document.getElementById('fullscreen').addEventListener('click', function () {
       if (screenfull.enabled) {
         screenfull.request(elem);

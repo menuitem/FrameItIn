@@ -26,10 +26,6 @@ var ImageEdit = (function(){
  		var image = FrameItIn.canvasToImage(canv);
 		var bmp = new createjs.Bitmap(image),
 			stage = new createjs.Stage(canv);
- 			// console.log("image", image);
-			// console.log("bmp", bmp);
-			// console.log("stage", stage);
-		// apply a greyscale filter to the image
 		var greyScaleFilter = new createjs.ColorMatrixFilter([
 			0.33, 0.33, 0.33, 0, 0, // red
 			0.33, 0.33, 0.33, 0, 0, // green
@@ -37,6 +33,7 @@ var ImageEdit = (function(){
 			0, 0, 0, 1, 0  // alpha
 		]);       
 		bmp.filters = [greyScaleFilter];
+
 		bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
 		stage.addChild(bmp);
 		stage.update();        
@@ -47,13 +44,54 @@ var ImageEdit = (function(){
     var picture = window.origPicture;
     var ctx = canv.getContext('2d');
     ctx.drawImage(picture, 0, 0);
-    
-    // var bmp = new createjs.Bitmap(picture);
-    // var canv = document.getElementById("dropPic");
-    // stage = new createjs.Stage(canv);
-    // bmp.cache(0, 0, bmp.width*3, bmp.height*3); // color filters don't change the bounds.
-    // stage.addChild(bmp);
-    // stage.update();
+
+  }
+
+  var brighten = function(canv) {
+ 		var image = FrameItIn.canvasToImage(canv);
+		var bmp = new createjs.Bitmap(image),
+			stage = new createjs.Stage(canv);
+
+		 var matrix = new createjs.ColorMatrix().adjustBrightness(30);
+		 bmp.filters = [
+		     new createjs.ColorMatrixFilter(matrix)
+		 ];
+
+		 bmp.cache(0, 0, image.width*3, image.height*3); 
+		 stage.addChild(bmp);
+		 stage.update();  
+	}
+
+	var darken = function(canv) {
+ 		var image = FrameItIn.canvasToImage(canv);
+		var bmp = new createjs.Bitmap(image),
+			stage = new createjs.Stage(canv);
+
+		 var matrix = new createjs.ColorMatrix().adjustBrightness(-30);
+		 bmp.filters = [
+		     new createjs.ColorMatrixFilter(matrix)
+		 ];
+
+		 bmp.cache(0, 0, image.width*3, image.height*3); 
+		 stage.addChild(bmp);
+		 stage.update();  
+	}
+
+  var drawBlackBorder = function(canv){
+  	var ctx=canv.getContext("2d");
+  	ctx.rect(0, 0, 400, 300);
+  	ctx.lineWidth = 40;
+  	ctx.strokeStyle = 'black';
+		ctx.stroke();
+
+  }
+
+  var drawWhiteBorder = function(canv){
+  	var ctx=canv.getContext("2d");
+  	ctx.rect(0, 0, 400, 300);
+  	ctx.lineWidth = 40;
+  	ctx.strokeStyle = 'white';
+		ctx.stroke();
   }
 	
 var downloadPic = function(){
@@ -66,6 +104,10 @@ var downloadPic = function(){
 	return {
 					turnSepia: turnSepia,
 					turnGreyScale: turnGreyScale,
-					returnColour: returnColour
+					returnColour: returnColour,
+					drawBlackBorder: drawBlackBorder,
+					drawWhiteBorder: drawWhiteBorder,
+					brighten: brighten,
+					darken: darken
 	}
 })()

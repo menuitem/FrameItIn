@@ -15,12 +15,12 @@
 
   var FrameItIn = (function(){
     
-    //downloading pictures
-      var download = function(e){
-        var eTarget = e.target || e.srcElement
-            ,image = eTarget.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        window.location.href=image; 
-      }
+    // //downloading pictures
+    //   var download = function(e){
+    //     var eTarget = e.target || e.srcElement
+    //         ,image = eTarget.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    //     window.location.href=image; 
+    //   }
       var showFileNameDiv = function(domEl, action, imgSrc){
         domEl.hidden=false;
         if ($){ // if jQuery
@@ -92,8 +92,8 @@
         var video = vid,
             canvas = document.createElement("canvas"),
             //change size of snapshot
-            canvasW = video.videoWidth /1.7,
-            canvasH = video.videoHeight /1.7;
+            canvasW = video.videoWidth /1.6,
+            canvasH = video.videoHeight /1.6;
         
         canvas.setAttribute('width',canvasW);
         canvas.setAttribute('height',canvasH);
@@ -177,7 +177,7 @@
                   smallDivImage.appendChild(image);
                   $(smallDivImage).append(links);
                   document.getElementById("snapshots").appendChild(smallDivImage);
-                  //Listeners to small images (show hide menu oon mouse in and out)
+                  //Listeners to small images (show hide menu on mouse in and out)
                   smallDivImage.addEventListener("mouseenter",function(e) {
                       var menu = e.target.firstChild.nextSibling;
                       menu.setAttribute("style","position:absolute;left:0px;top:0px;");

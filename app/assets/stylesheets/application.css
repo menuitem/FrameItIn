@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require_tree .
- *= require bootswatch/superhero/bootstrap
+ *= require bootswatch/amelia/bootstrap
  */
 video {
 			transform: scaleX(-1); 
@@ -27,13 +27,15 @@ span img {
 }
 
 #dropPic {
- 			margin: 20px;
+ 			margin: 0px;
+ 			background-color: darkgrey;
 }
 
 #dropArea {
       width: 400px;
       height: 300px;
-      border: 1px solid grey; 
+      
+      /*border: 1px solid grey; */
       /*z-index: -10;*/
 }
 
