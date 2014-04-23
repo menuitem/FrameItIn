@@ -7,4 +7,4 @@ Application for ARIA
 * jQuery
 * bower
 
-Deployment at: http://www.frameitin.herokuapp.com
+Deployment at: http://frameitin.herokuapp.com
