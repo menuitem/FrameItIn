@@ -21,6 +21,23 @@
     //         ,image = eTarget.toDataURL("image/png").replace("image/png", "image/octet-stream");
     //     window.location.href=image; 
     //   }
+      var getAlertDiv = function(message){
+        var alerter = document.createElement("div");
+        alerter.classList.add("alert");
+        alerter.classList.add("alert-danger");
+        alerter.classList.add("alert-dismissable");
+        var button = document.createElement("button");
+            button.classList.add("close");
+            button.setAttribute("data-dismiss","alert");
+            button.setAttribute("aria-hidden", "true");
+            $(button).html("&times;");
+        alerter.appendChild(button);
+        var strEl = document.createElement("strong");
+            strEl.textContent="Alert: " +message;
+            alerter.appendChild(strEl)
+            // alerter.textContent=message 
+        return alerter;
+      }
       var showFileNameDiv = function(domEl, action, imgSrc){
         domEl.hidden=false;
         if ($){ // if jQuery
@@ -59,19 +76,30 @@
       }
       var uploadToCloud = function(imgSrc, fileName){
         if ($){ // if jQuery
+          if($("#user").length==1){
           $("body").css("cursor", "progress");
-          var data = {
-                      "picture[name]":fileName,
-                      "picture[image_data]":imgSrc,
-                      "picture[public]":"false"}
-          $.post("/pictures", data ,function(res){
-            $("#fileNameDiv").slideUp(100);
-            $("body").css("cursor", "default");
-          })
-            .fail(function(err){
-              console.log(err)
-              return err;
+            var data = {
+                        "picture[name]":fileName,
+                        "picture[image_data]":imgSrc,
+                        "picture[public]":"false"}
+            $.ajax("/pictures", data ,function(res){
+              $("#fileNameDiv").slideUp(100);
+              $("body").css("cursor", "default");
             })
+              .error(function(err){
+                var dipslayError = getAlertDiv(err.responseText);
+                $("#fileNameDiv").append(dipslayError);
+                $("body").css("cursor", "default");
+                alert();
+                // throw new Error(err);
+                // return err;
+            })
+        }else{
+          message = "You must be signed in to contiune";
+          var dipslayError = getAlertDiv(message);
+          $("#fileNameDiv").append(dipslayError);
+
+        }
         }else{
           alert("Need jQuery do this")
         }
