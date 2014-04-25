@@ -51,12 +51,12 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
   }
     
   var snapShot = function(m) {
-    if(document.getElementsByTagName('input')[1].value == "Shoot"){
-      document.getElementsByTagName('input')[1].value="Stop";
+    if(document.getElementById("shootButton").value == "Shoot"){
+      document.getElementById("shootButton").value="Stop";
       takeInfinitiveShots();
     }else{
       if (t!=null) clearTimeout(t);
-      document.getElementsByTagName('input')[1].value="Shoot";
+      document.getElementById("shootButton").value="Shoot";
     }
   } // end of snapshot function
   
@@ -69,7 +69,15 @@ if (elem){
 //listener to download
   document.getElementById("link").addEventListener('click', function(e){
     var canvas = FrameItIn.canvasToImage(document.getElementById("dropPic"));
-    FrameItIn.showFileNameDiv(document.getElementById("fileNameDiv"), "Download", canvas);
+    var fileName = FrameItIn.getFileNameDiv("Save", canvas);
+    $("#fileNameDiv").html(fileName).hide().slideDown();
+
+  }, false);
+  document.getElementById("upload").addEventListener('click', function(e){
+    var canvas = FrameItIn.canvasToImage(document.getElementById("dropPic"));
+    var fileName = FrameItIn.getFileNameDiv("Upload", canvas);
+    $("#fileNameDiv").html(fileName).hide().slideDown();
+
   }, false);
   //return to colour
   document.getElementById("returncolour").addEventListener('click', function(e){

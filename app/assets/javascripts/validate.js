@@ -10,9 +10,10 @@ var Validate = (function(name){
                         throw new Error ("Only letters, numbers, spaces.");
                     }
                 },
-                notZero: function(num){
-                    if ((isNaN(num) == false ) && (num == 0)) {
-                        throw new Error ("Can not divide by zero!");
+                currentUser: function(){
+                    var cU = document.getElementById("user");
+                    if (cU==null) {
+                        throw new Error ("You must be logged in!");
                     }
                 }
             }
