@@ -15,19 +15,6 @@
   })();
 
   var FrameItIn = (function(){
-    
-    // //downloading pictures
-    //   var download = function(e){
-    //     var eTarget = e.target || e.srcElement
-    //         ,image = eTarget.toDataURL("image/png").replace("image/png", "image/octet-stream");
-    //     window.location.href=image; 
-    //   }
-
-      var currentUser = function(){
-        var cU =document.getElementById("user").length;
-        // if 
-        // (cU==1)?{return true}:{return false};
-      }
       var getAlertDiv = function(message){
         var alerter = document.createElement("div");
         alerter.classList.add("alert");
@@ -45,60 +32,65 @@
             // alerter.textContent=message 
         return alerter;
       }
-      var showFileNameDiv = function(domEl, action, imgSrc){
-        domEl.hidden=false;
-        // <div id = "fileNameDiv" class ="fixed-top" hidden>
-        //       <div class="input-group">
-        //         <input type="text" class="form-control" placeholder ="File name, please..."/>
-        //         <span class="input-group-addon"><a href="">Action</a></span>
-        //         <span class="input-group-addon"><a href="">Cancel</a></span>
-        //       </div>
-        //     </div>
-
-        // var fileNameDiv = document.createElement('div');
-        //   fileNameDiv.setAttribute("id", "fixed-top");
-        // var inputGroup = document.createElement("div");
-        //   inputGroup.classList.add("form-control");
-        //   fileNameDiv.appendChild(inputGroup);
-        // var inputNameEl = 
-        //   fileNameDiv.setAttribute("placeholder", "File name, please...");
-
-
-        if ($){ // if jQuery
-          $(domEl).css("top", $(".navbar").height())
-          var actionLink = $(domEl).find("a:first");
-          $(actionLink).text(action);
-          $(domEl).hide().slideDown(300);
-          $(actionLink).on("click", function(e){
-            if ($(actionLink).text()== "Upload"){
-              e.preventDefault();
-              var fileName = getFileName(domEl);
-              try{
-                Validate.fileName(fileName);
-                $(actionLink).text("Uploading")
-                uploadToCloud(imgSrc, fileName);
-              }catch(err){
-                var alertdiv = getAlertDiv(err.message);
-                $(domEl).append(alertdiv);
-              }
-            }
-            if ($(actionLink).text()== "Download"){
-              var link = $(domEl).find("a:first");
-              var fileName=$(domEl).find("input").val()
-                if(fileName.length>3){
-                  $(link).attr("download", fileName );
-                  $(link).attr("href", imgSrc.src);
-                  $(domEl).slideUp(100);
-                }
-              }
-          })
-          var cancelLink = $(domEl).find("a:last");
-          $(cancelLink).on("click", function(e){
+      var getFileNameDiv = function(action, imgSrc){
+        var fileNameDiv = document.createElement('div');
+          fileNameDiv.setAttribute("id", "fixed-top");
+        var inputGroup = document.createElement("div");
+          inputGroup.classList.add("input-group");
+          fileNameDiv.appendChild(inputGroup);
+        var inputNameEl = document.createElement("input");
+          inputNameEl.setAttribute("type", "typext");
+          inputNameEl.setAttribute("placeholder", "File name, please...");
+          inputNameEl.classList.add("form-control");
+          inputGroup.appendChild(inputNameEl);
+        var actionLink = document.createElement("a");
+          actionLink.classList.add("input-group-addon");
+          actionLink.textContent = action;
+          actionLink.href='#';
+        var cancelLink = document.createElement("a");
+          cancelLink.classList.add("input-group-addon");
+          cancelLink.href='#';
+          cancelLink.textContent = "Cancel";
+        inputGroup.appendChild(actionLink);
+        inputGroup.appendChild(cancelLink);
+        var errorDiv = document.createElement("div");
+        fileNameDiv.appendChild(errorDiv);
+        $(actionLink).on("click", function(e){
+          var fileName = inputNameEl.value.trim();
+          if ($(actionLink).text()== "Upload"){
             e.preventDefault();
-            $(domEl).find("input").val("");
-            $(domEl).slideUp(300);
-          }); 
-        }
+            try{
+              console.log(imgSrc)
+              var imgData = imgSrc.src||imgSrc.parentNode.parentNode.firstChild.src;
+              Validate.currentUser();
+              Validate.fileName(fileName);
+              $(actionLink).text("Uploading");
+              $(actionLink).attr("href","");
+              if(uploadToCloud(imgData, fileName)){
+                imgSrc.disabled=true;
+              };
+            }catch(err){
+              var alertdiv = getAlertDiv(err.message);
+              $(errorDiv).html(alertdiv);
+            }
+          }
+          if ($(actionLink).text()== "Save"){
+            try{
+              Validate.fileName(fileName);
+              $(actionLink).attr("download", fileName );
+              $(actionLink).attr("href", imgSrc.src);
+              $("#fileNameDiv").slideUp(100);
+            }catch(err){
+             var alertdiv = getAlertDiv(err.message);
+              $(errorDiv).html(alertdiv); 
+            }
+          }
+        })
+        $(cancelLink).on("click", function(e){
+          e.preventDefault();
+          $("#fileNameDiv").slideUp(100);
+        }); 
+        return fileNameDiv;
       }
 
       var uploadToCloud = function(imgSrc, fileName){
@@ -107,25 +99,19 @@
                         "picture[name]":fileName,
                         "picture[image_data]":imgSrc,
                         "picture[public]":"false"}
-            $.ajax("/pictures", data ,function(res){
+            $.post("/pictures", data ,function(res){
               $("#fileNameDiv").slideUp(100);
               $("body").css("cursor", "default");
+              $("#fileNameDiv").slideUp(100);
+              imgSrc.disabled=true;
+              return true;
             })
-              .error(function(err){
+              .fail(function(err){
                 var dipslayError = getAlertDiv(err.responseText);
                 $("#fileNameDiv").append(dipslayError);
                 $("body").css("cursor", "default");
+                return false;
             })
-      }
-      var getFileName = function(domEl){
-        return $(domEl).find("input").val() 
-      }
-      var hideFileNameDiv = function(domEl){
-        if ($){ // if jQuery
-          $(divId).hide().slideUp(300);
-          return
-        }
-        divId.hidden=true;
       }
 
       //Capturing picture from camera to canvas 
@@ -187,22 +173,20 @@
         });
         //listener for small upload button 
         uploadButton.addEventListener("click", function(e){
-          var imgData = e.target.parentNode.parentNode.firstChild.src;
-          // var dataURL = img.replace('data:image/png;base64,','')
-          // this.disabled=true;
-           var sss=showFileNameDiv(document.getElementById("fileNameDiv"), "Upload", imgData);
+           var fileName = getFileNameDiv("Upload", e.target);
+           $("#fileNameDiv").html(fileName).hide().slideDown();
         });
         //listener for small download button 
         downloadButton.addEventListener("click", function(e){
           var imgData = e.target.parentNode.parentNode.firstChild;
-          // var dataURL = img.replace('data:image/png;base64,','')
-           showFileNameDiv(document.getElementById("fileNameDiv"), "Save", imgData);
+          var fileName = getFileNameDiv("Save", imgData);
+          $("#fileNameDiv").html(fileName).hide().slideDown();
         });
         return linkMenuDiv;
       }
 
     return{
-      showFileNameDiv: showFileNameDiv,
+      getFileNameDiv: getFileNameDiv,
       canvasToImage: canvasToImage,
       takeShot: function(video){
           if (video.readyState) {
