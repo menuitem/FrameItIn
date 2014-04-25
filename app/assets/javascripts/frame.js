@@ -60,7 +60,6 @@
           if ($(actionLink).text()== "Upload"){
             e.preventDefault();
             try{
-              console.log(imgSrc)
               var imgData = imgSrc.src||imgSrc.parentNode.parentNode.firstChild.src;
               Validate.currentUser();
               Validate.fileName(fileName);
