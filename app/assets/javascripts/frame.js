@@ -21,6 +21,12 @@
     //         ,image = eTarget.toDataURL("image/png").replace("image/png", "image/octet-stream");
     //     window.location.href=image; 
     //   }
+
+      var currentUser = function(){
+        var cU =document.getElementById("user").length;
+        // if 
+        // (cU==1)?{return true}:{return false};
+      }
       var getAlertDiv = function(message){
         var alerter = document.createElement("div");
         alerter.classList.add("alert");
@@ -33,14 +39,32 @@
             $(button).html("&times;");
         alerter.appendChild(button);
         var strEl = document.createElement("strong");
-            strEl.textContent="Alert: " +message;
+            strEl.textContent="Alert: " + message;
             alerter.appendChild(strEl)
             // alerter.textContent=message 
         return alerter;
       }
       var showFileNameDiv = function(domEl, action, imgSrc){
         domEl.hidden=false;
+        // <div id = "fileNameDiv" class ="fixed-top" hidden>
+        //       <div class="input-group">
+        //         <input type="text" class="form-control" placeholder ="File name, please..."/>
+        //         <span class="input-group-addon"><a href="">Action</a></span>
+        //         <span class="input-group-addon"><a href="">Cancel</a></span>
+        //       </div>
+        //     </div>
+
+        // var fileNameDiv = document.createElement('div');
+        //   fileNameDiv.setAttribute("id", "fixed-top");
+        // var inputGroup = document.createElement("div");
+        //   inputGroup.classList.add("form-control");
+        //   fileNameDiv.appendChild(inputGroup);
+        // var inputNameEl = 
+        //   fileNameDiv.setAttribute("placeholder", "File name, please...");
+
+
         if ($){ // if jQuery
+          $(domEl).css("top", $(".navbar").height())
           var actionLink = $(domEl).find("a:first");
           $(actionLink).text(action);
           $(domEl).hide().slideDown(300);
@@ -48,12 +72,13 @@
             if ($(actionLink).text()== "Upload"){
               e.preventDefault();
               var fileName = getFileName(domEl);
-              if (fileName.length != ""){
+              try{
+                Validate.fileName(fileName);
                 $(actionLink).text("Uploading")
                 uploadToCloud(imgSrc, fileName);
-              }else{
-              // display message, validate etc.
-              alert(" file name cant be blank !"); //temp alert
+              }catch(err){
+                var alertdiv = getAlertDiv(err.message);
+                $(domEl).append(alertdiv);
               }
             }
             if ($(actionLink).text()== "Download"){
@@ -74,9 +99,8 @@
           }); 
         }
       }
+
       var uploadToCloud = function(imgSrc, fileName){
-        if ($){ // if jQuery
-          if($("#user").length==1){
           $("body").css("cursor", "progress");
             var data = {
                         "picture[name]":fileName,
@@ -90,19 +114,7 @@
                 var dipslayError = getAlertDiv(err.responseText);
                 $("#fileNameDiv").append(dipslayError);
                 $("body").css("cursor", "default");
-                alert();
-                // throw new Error(err);
-                // return err;
             })
-        }else{
-          message = "You must be signed in to contiune";
-          var dipslayError = getAlertDiv(message);
-          $("#fileNameDiv").append(dipslayError);
-
-        }
-        }else{
-          alert("Need jQuery do this")
-        }
       }
       var getFileName = function(domEl){
         return $(domEl).find("input").val() 
@@ -176,14 +188,14 @@
         uploadButton.addEventListener("click", function(e){
           var imgData = e.target.parentNode.parentNode.firstChild.src;
           // var dataURL = img.replace('data:image/png;base64,','')
-          this.disabled=true;
-           showFileNameDiv(document.getElementById("fileNameDiv"), "Upload", imgData);
+          // this.disabled=true;
+           var sss=showFileNameDiv(document.getElementById("fileNameDiv"), "Upload", imgData);
         });
         //listener for small download button 
         downloadButton.addEventListener("click", function(e){
           var imgData = e.target.parentNode.parentNode.firstChild;
           // var dataURL = img.replace('data:image/png;base64,','')
-           showFileNameDiv(document.getElementById("fileNameDiv"), "Download", imgData);
+           showFileNameDiv(document.getElementById("fileNameDiv"), "Save", imgData);
         });
         return linkMenuDiv;
       }

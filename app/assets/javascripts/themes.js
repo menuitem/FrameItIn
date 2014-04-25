@@ -18,8 +18,9 @@ $(function(){
    var themesheet = $('<link href="'+(themeurl)+'" rel="stylesheet" />');
     themesheet.appendTo('head');
     $('.theme-link').click(function(){
-       var themeurl = themes[$(this).attr('data-theme')];
-       themesheet.attr('href',themeurl);
-       localStorage.setIemt("themeurl", themeurl)
+      // $('#fileNameDiv').css("top", $(".navbar").height())
+      var themeurl = themes[$(this).attr('data-theme')];
+      themesheet.attr('href',themeurl);
+      localStorage.setItem("themeurl", themeurl)
     });
 });
