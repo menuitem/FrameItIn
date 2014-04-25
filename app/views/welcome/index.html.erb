@@ -4,46 +4,60 @@
   </section>
   <section id="app" hidden>
     <div class="row">
-          <p><video id="monitor" autoplay></video>
-          <p><input type="button"  id = "shootButton" value="Shoot" class="btn btn-primary">
-              <input type="button"  id = "shootXButton" value="Shoot 10 times" class="btn btn-primary">
-              <input type="button"  id = "shootInfinitiveButton" value="Shoot infinitive" class="btn btn-primary">
-    </div>
-    <div class="row">
-      <div id = "snapshots" class = "snapshots"> </div>
-    </div>
-    <div class="row">
-      <!--
-      <div class="row">
-           <p><a href="#" id='link' class="btn btn-primary" role="button">Save</a>
-            <a href="#" id="convertgrey" class="btn btn-primary" role="button">GreyScale</a>
+      <!--left hand strip of photos - becomes full width for small devices-->
+      <div class="col-xs-12 col-sm-4 col-lg-3">
+        <div id = "snapshots" class = "snapshots"></div> 
+      </div>
+
+      <!--camera and edit picture are side by side for large displays, then become one
+      above the other for medium and small displays -->
+      <!--Camera area-->
+      <div class="col-xs-12 col-sm-8 col-lg-4">
+        <h3 class="description">Camera</h3>
+        <p class ="description">Just click the 'shoot' button to start taking pictures. Your snapshots will be displayed on the left. You can save or upload directly from there, or you can edit a picture first by clicking 'select'.</p>
+        <p><video id="monitor" autoplay></video>
+        <p><input type="button"  id = "shootButton" value="Shoot" class="btn btn-primary">
+        <input type="button"  id = "shootXButton" value="Shoot 10 times" class="btn btn-primary">
+        <input type="button"  id = "shootInfinitiveButton" value="Shoot infinitive" class="btn btn-primary"> 
+      </div> 
+
+      <!--Editing Area-->
+      <div class="col-xs-12 col-sm-8 col-lg-5"> 
+        <h3 class="description">Editing Area</h3>
+          <p class ="description">Change the colour and brightness, or add a border. Save or upload picture from here when you are done. </p>  
+        <div id="dropArea" class="center-block">          
+          <p>            
+            <a href="#" id="convertgrey" class="btn btn-primary" role="button">Grey</a>
             <a href="#" id="convertsepia" class="btn btn-primary" role="button">Sepia</a>
-            <a href="#" id="brighten" class="btn btn-primary" role="button">Brighten</a>
-            <a href="#" id="darken" class="btn btn-primary" role="button">Darken</a>
+            <a href="#" id="brighten" class="btn btn-primary" role="button">Bright</a>
+            <a href="#" id="darken" class="btn btn-primary" role="button">Dark</a>
+            <a href="#" id='fullscreen' class="btn btn-primary" role="button">View</a>
+          </p>
+          <p><canvas id="dropPic" width="400" height="300"></canvas></p>
+          <p> 
             <a href="#" id="drawblackborder" class="btn btn-primary" role="button">Black Border</a>
-            <a href="#" id="drawwhiteborder" class="btn btn-primary" role="button">White Border</a>
+            <a href="#" id="drawwhiteborder" class="btn btn-primary" role="button">White Border</a>      
             <a href="#" id="returncolour" class="btn btn-primary" role="button">Undo All</a>
-            <a href="#" id='fullscreen' class="btn btn-primary" role="button">View Image</a>
-      </div>
-    -->
-      <div class="row">
-            <div id="dropArea" class="center-block">
-              <span>            
-                <a href="#" id="convertgrey" class="btn btn-primary" role="button">GreyScale</a>
-                <a href="#" id="convertsepia" class="btn btn-primary" role="button">Sepia</a>
-                <a href="#" id="brighten" class="btn btn-primary" role="button">Brighten</a>
-                <a href="#" id="darken" class="btn btn-primary" role="button">Darken</a>
-                <a href="#" id='fullscreen' class="btn btn-primary" role="button">View</a>          
-              </span>
-              <canvas id="dropPic" width="400" height="300"></canvas> 
-              <span>       
-                <a href="#" id="returncolour" class="btn btn-primary" role="button">Undo All</a>
-                <a href="#" id="drawblackborder" class="btn btn-primary" role="button">Black Border</a>
-                <a href="#" id="drawwhiteborder" class="btn btn-primary" role="button">White Border</a>
-                <a href="#" id='link' class="btn btn-primary" role="button">Save</a>
-              </span>
-            </div>
-      </div>
-    </div>
+          </p>
+          <p>          
+            <a href="#" id='link' class="btn btn-primary" role="button">Save</a>
+            <a href="#" id='link' class="btn btn-primary" role="button">Upload</a>
+          </p>
+        </div><!--end droparea div-->
+      </div><!--end col div-->
+      
+    </div><!--end row div-->
   </section>
 </article>
+<script>
+$('#snapshots').slimScroll({
+    width: '235px',
+    height: '700px',
+    size: '12px',
+    railVisible: true,
+    alwaysVisible: true,
+    railColor: '#e51400',
+    color: '#000000',
+    railOpacity: 0.5
+  });
+</script>

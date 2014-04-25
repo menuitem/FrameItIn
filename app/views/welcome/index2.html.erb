@@ -1,0 +1,49 @@
+<article>
+  <section id="splash">
+    <p id="errorMessage">Loading...</p>
+  </section>
+  <section id="app" hidden>
+    <div class="row">
+          <p><video id="monitor" autoplay></video>
+          <p><input type="button"  id = "shootButton" value="Shoot" class="btn btn-primary">
+              <input type="button"  id = "shootXButton" value="Shoot 10 times" class="btn btn-primary">
+              <input type="button"  id = "shootInfinitiveButton" value="Shoot infinitive" class="btn btn-primary">
+    </div>
+    <div class="row">
+      <div id = "snapshots" class = "snapshots"> </div>
+    </div>
+    <div class="row">
+      <!--
+      <div class="row">
+           <p><a href="#" id='link' class="btn btn-primary" role="button">Save</a>
+            <a href="#" id="convertgrey" class="btn btn-primary" role="button">GreyScale</a>
+            <a href="#" id="convertsepia" class="btn btn-primary" role="button">Sepia</a>
+            <a href="#" id="brighten" class="btn btn-primary" role="button">Brighten</a>
+            <a href="#" id="darken" class="btn btn-primary" role="button">Darken</a>
+            <a href="#" id="drawblackborder" class="btn btn-primary" role="button">Black Border</a>
+            <a href="#" id="drawwhiteborder" class="btn btn-primary" role="button">White Border</a>
+            <a href="#" id="returncolour" class="btn btn-primary" role="button">Undo All</a>
+            <a href="#" id='fullscreen' class="btn btn-primary" role="button">View Image</a>
+      </div>
+    -->
+      
+            <div id="dropArea" class="center-block">
+              <span>            
+                <a href="#" id="convertgrey" class="btn btn-primary" role="button">GreyScale</a>
+                <a href="#" id="convertsepia" class="btn btn-primary" role="button">Sepia</a>
+                <a href="#" id="brighten" class="btn btn-primary" role="button">Brighten</a>
+                <a href="#" id="darken" class="btn btn-primary" role="button">Darken</a>
+                <a href="#" id='fullscreen' class="btn btn-primary" role="button">View</a>          
+              </span>
+              <canvas id="dropPic" width="400" height="300"></canvas> 
+              <span>       
+                <a href="#" id="returncolour" class="btn btn-primary" role="button">Undo All</a>
+                <a href="#" id="drawblackborder" class="btn btn-primary" role="button">Black Border</a>
+                <a href="#" id="drawwhiteborder" class="btn btn-primary" role="button">White Border</a>
+                <a href="#" id='link' class="btn btn-primary" role="button">Save</a>
+              </span>
+            
+      </div>
+    </div>
+  </section>
+</article>

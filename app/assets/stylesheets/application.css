@@ -34,6 +34,8 @@ span img {
 #dropArea {
       width: 400px;
       height: 300px;
+      padding-left:20px;
+
       
       /*border: 1px solid grey; */
       /*z-index: -10;*/
@@ -45,6 +47,7 @@ span img {
 .smallpic{
 	width: 160px;
 	height: 120px;
+	border: 10px solid black;
 }
 
 body{
@@ -52,6 +55,7 @@ body{
 }
 #snapshots div{
 	position: relative;
+
 }
 /*Device*/
 .login{
@@ -68,3 +72,26 @@ body{
   z-index: 100;
 
 }
+
+.snapshots {
+	overflow:scroll;
+	background-image: url(filmstrip2.jpg);
+	padding-left: 35px;
+	padding-top: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+#monitor {
+	margin-right: 5px;
+}
+
+.description {
+	text-align: justify;
+	font-size: 120%;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+

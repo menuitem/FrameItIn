@@ -1,3 +1,4 @@
+
   var Media = (function(){
     //will need to move here all getUserMediaAPI
       navigator.getMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia ||
