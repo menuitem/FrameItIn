@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     } else {
         var vendorURL = window.URL || window.webkitURL;
         video.src = vendorURL.createObjectURL(stream);
+
     }
+    document.getElementById("cameraButton").classList.remove("notvisible")
     document.getElementById('splash').hidden = true;
     document.getElementById('app').hidden = false;
   }
@@ -54,11 +56,25 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     if(document.getElementById("shootButton").value == "Shoot"){
       document.getElementById("shootButton").value="Stop";
       takeInfinitiveShots();
+      document.getElementById("cameraButton").classList.add("deeppink")
     }else{
       if (t!=null) clearTimeout(t);
       document.getElementById("shootButton").value="Shoot";
+      document.getElementById("cameraButton").classList.remove("deeppink")
+
     }
-  } // end of snapshot function
+  } 
+document.getElementById("shootButton")?
+document.getElementById("shootButton").
+addEventListener("click", snapShot, false):{};
+
+document.getElementById("shootButton")?
+document.getElementById("cameraButton").
+addEventListener("click", function(e){
+  e.preventDefault();
+  snapShot();
+}, false):{};
+  // end of snapshot function
   
 
 //the following uses the screenfull api, and will display a fullscreen, if 
@@ -134,9 +150,5 @@ if (elem){
     }
   });
   }
-
-  document.getElementById("shootButton")?
-  document.getElementById("shootButton").
-  addEventListener("click", snapShot, false):{};
 
 });//end DOMContentLoaded

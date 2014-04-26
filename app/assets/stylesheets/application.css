@@ -99,3 +99,10 @@ body{
 	margin-right: auto;
 }
 
+.deeppink{
+	color:red !important;
+}
+
+.notvisible{
+	visibility: hidden
+}
