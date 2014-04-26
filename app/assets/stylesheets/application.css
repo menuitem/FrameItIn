@@ -48,6 +48,7 @@ span img {
 	width: 160px;
 	height: 120px;
 	border: 10px solid black;
+	margin-right: 60px;
 }
 
 body{
@@ -80,8 +81,9 @@ body{
 	padding-top: 8px;
 	margin-left: auto;
 	margin-right: auto;
-	/*
+	
 	width: 235px;
+	/*
   height: 700px;
   */
 	
