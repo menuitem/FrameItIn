@@ -4,11 +4,5 @@
 <div class = "pictures">
 <% @pictures.each do |picture| %>
     <img src= "<%= picture.image_data %>" alt ="<%= picture.name %>" />
-    <td><%= picture.name %></td>
-    <td><%#= picture.user %></td>
-    <td><%#= link_to 'Show', picture %></td>
-    <td><%#= link_to 'Edit', edit_picture_path(picture) %></td>
-    <%= picture.public %>
-    <%= link_to 'Delete', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 </div>

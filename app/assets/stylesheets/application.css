@@ -12,6 +12,14 @@
  *= require_tree .
  *= require bootswatch/amelia/bootstrap
  */
+#cameraButton{
+	position: absolute !important;
+	left:2em;
+	top:.5em;
+	/*float: left !important;*/
+	/*display: inline !important;*/
+}
+
 video {
 			transform: scaleX(-1); 
 			width: 400px;

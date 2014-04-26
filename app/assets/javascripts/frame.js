@@ -144,15 +144,16 @@
         var linkMenuDiv = document.createElement("div");
           // linkMenuDiv.classList.add("center-block");
           linkMenuDiv.hidden = true;
-        var selectButton = document.createElement("button");
+        var selectButton = document.createElement("a");
           selectButton.classList.add("glyphicon-wrench");
           selectButton.setAttribute("title", "Select for edit.")
+          selectButton.setAttribute("href","#editarea")
           linkMenuDiv.appendChild(selectButton);
-        var downloadButton = document.createElement("button");
+        var downloadButton = document.createElement("a");
           downloadButton.classList.add("glyphicon-download-alt");
           downloadButton.setAttribute("title", "Save to the drive.")
           linkMenuDiv.appendChild(downloadButton)
-        var uploadButton = document.createElement("button");
+        var uploadButton = document.createElement("a");
           uploadButton.classList.add("glyphicon-cloud");
           uploadButton.setAttribute("title", "Upload to cloud.")
           linkMenuDiv.appendChild(uploadButton)
