@@ -35,8 +35,8 @@ var ImageEdit = (function(){
 		bmp.filters = [greyScaleFilter];
 
 		bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
-		stage.addChild(bmp);
-		stage.update();        
+		//stage.addChild(bmp);
+		//stage.update();        
 	}
 
 	var returnColour = function(canv){

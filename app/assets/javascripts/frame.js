@@ -15,6 +15,7 @@
   })();
 
   var FrameItIn = (function(){
+
       var getAlertDiv = function(message){
         var alerter = document.createElement("div");
         alerter.classList.add("alert");
@@ -32,6 +33,7 @@
             // alerter.textContent=message 
         return alerter;
       }
+
       var getFileNameDiv = function(action, imgSrc){
         var fileNameDiv = document.createElement('div');
           fileNameDiv.setAttribute("id", "fixed-top");
@@ -135,6 +137,7 @@
         smallImg.src = url;
         return smallImg;
       }
+
       //creating menu with select, download and upload buttons. parameter button size in px 
       var getLinks = function(buttonSize){
         var buttonSize = buttonSize || 32;
@@ -187,7 +190,12 @@
 
     return{
       getFileNameDiv: getFileNameDiv,
+      getAlertDiv: getAlertDiv,
+      getFileNameDiv: getFileNameDiv,
       canvasToImage: canvasToImage,
+      getCanvasFromCamera: getCanvasFromCamera,
+      getLinks: getLinks,
+      
       takeShot: function(video){
           if (video.readyState) {
               try {
