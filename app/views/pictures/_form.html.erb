@@ -1,4 +1,5 @@
-<%= form_for(@picture) do |f| %>
+<div class="login center-block">
+<%= form_for(@picture, html:{role:"form", class: "form-horizontal"}) do |f| %>
   <% if @picture.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
@@ -10,20 +11,26 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">   
+    <%= f.text_field :name, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :image_data %><br />
-    <%= f.text_area :image_data %>
+  <!-- <div class="field">
+    <%#= f.label :image_data %><br />
+    <%#= f.text_area :image_data %>
+  </div> -->
+  <div class="form-group">
+    <%= f.label :public, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.check_box :public, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :public %><br />
-    <%= f.check_box :public %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Save", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
+</div>

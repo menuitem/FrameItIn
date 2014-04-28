@@ -44,7 +44,7 @@
 
     
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <a  href = "" id = "cameraButton" class="glyphicon glyphicon-camera notvisible btn btn-primary"></a>
+      <a  href = "#" id = "cameraButton" class="glyphicon glyphicon-camera notvisible btn btn-primary"></a>
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -56,8 +56,9 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to 'FrameInIt', root_path, class: "navbar-brand theme-link" %></li>
-            <li class="dropdown">
+            <li><%= link_to 'FrameInIt', root_path, class: "glyphicon theme-link" %></li>
+              <li id="user"><%= link_to "Public pics", public_path(0), class: "glyphicon glyphicon-globe" %></li>
+            <li class="dropdown glyphicon">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#" data-theme="default" class="theme-link">Default</a></li>
@@ -76,11 +77,11 @@
               </ul>
             </li>
             <% if !current_user %>
-              <li><%= link_to 'Sign In', new_user_session_path %></li>
+              <li><%= link_to 'Sign In', new_user_session_path, class: "glyphicon" %></li>
             <% else %>
               <li><%= link_to current_user.email, edit_user_registration_path, class: "glyphicon glyphicon-user" %></li>
               <li id="user"><%= link_to "My pics", myuploads_path(0), class: "glyphicon glyphicon-cloud" %></li>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "glyphicon" %></li>
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->

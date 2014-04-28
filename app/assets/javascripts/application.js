@@ -17,6 +17,7 @@
 //= require angular-animate/angular-animate
 //= require EaselJS/lib/easeljs-0.7.1.min
 //= require screenfull/dist/screenfull
+//= require slimScroll/jquery.slimscroll
 //= require jquery_ujs
 //= require_tree .
 

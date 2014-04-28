@@ -120,10 +120,19 @@ body{
 footer{
 	margin-top: 1em;
 }
+#scrollLeft, #scrollRight{
+	position: relative;
+	/*top:-40px;*/
+}
+#scrollRight{
+	float: right;
+}
 .uploadedPics{
 	display: inline-block;
 }
-
+.uploadedPics img{
+	width: 320px
+}
 .uploadedPics img:hover{
 	position: relative;
   -webkit-transform:scale(1.11);

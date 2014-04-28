@@ -14,7 +14,7 @@ var themes = {
     "superhero" : "//bootswatch.com/superhero/bootstrap.min.css"
 }
 $(function(){
-   var themeurl = localStorage.getItem("themeurl") || themes['default'];
+   var themeurl = localStorage.getItem("themeurl") || themes['superhero'];
    var themesheet = $('<link href="'+(themeurl)+'" rel="stylesheet" />');
     themesheet.appendTo('head');
     $('.theme-link').click(function(){

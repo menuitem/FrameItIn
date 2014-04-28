@@ -1,6 +1,9 @@
 FrameItIn::Application.routes.draw do
-  resources :pictures
-  get "uploads/:id" =>"pictures#index", as: :myuploads
+  get "public/:id" =>"public#index", as: :public
+  get "show/:id" =>"public#show", as: :show
+
+  resources :pictures, except: [:show, :new]
+  get "pictures/:id" =>"pictures#index", as: :myuploads
 
   devise_for :users
 

@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+  <b>Name:</b>
+  <%= @picture.name %>
+</p>
+<b>Created at:</b>
+  <%= @picture.created_at %>
+</p>
+<b>Public:</b>
+  <%= (@picture.public)?("Yes"):("No") %>
+</p>
+<%= link_to 'Back', request.referrer %>
