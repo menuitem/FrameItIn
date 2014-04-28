@@ -114,5 +114,34 @@ body{
 }
 
 .notvisible{
-	visibility: hidden
+	visibility: hidden;
+}
+
+footer{
+	margin-top: 1em;
+}
+.uploadedPics{
+	display: inline-block;
+}
+
+.uploadedPics img:hover{
+	position: relative;
+  -webkit-transform:scale(1.11);
+  -moz-transform:scale(1.1);
+  -o-transform:scale(1.1);
+  transform:scale(1.1);
+  transition-duration: 0.7s;
+
+}
+.reveal-animation.ng-enter {
+  -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
+  animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+}
+@-webkit-keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
 }

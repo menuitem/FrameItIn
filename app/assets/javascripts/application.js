@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require bootstrap/dist/js/bootstrap
+//= require angular/angular
+//= require angular-route/angular-route
+//= require angular-animate/angular-animate
 //= require EaselJS/lib/easeljs-0.7.1.min
 //= require screenfull/dist/screenfull
 //= require jquery_ujs

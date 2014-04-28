@@ -79,7 +79,7 @@
               <li><%= link_to 'Sign In', new_user_session_path %></li>
             <% else %>
               <li><%= link_to current_user.email, edit_user_registration_path, class: "glyphicon glyphicon-user" %></li>
-              <li id="user"><%= link_to "My pics", pictures_path, class: "glyphicon glyphicon-cloud" %></li>
+              <li id="user"><%= link_to "My pics", myuploads_path(0), class: "glyphicon glyphicon-cloud" %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
             <% end %>
           </ul>

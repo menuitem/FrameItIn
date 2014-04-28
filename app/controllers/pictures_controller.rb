@@ -3,7 +3,8 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = current_user.pictures
+    id = (params[:id].to_i || 0) * 6
+    @pictures = current_user.pictures.limit(6).offset(id)
 
     respond_to do |format|
       format.html # index.html.erb

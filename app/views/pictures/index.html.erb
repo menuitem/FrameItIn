@@ -1,8 +1,11 @@
-<h1>Your pictures</h1>
-<%= link_to 'Shoot more', root_path %>
 
-<div class = "pictures">
-<% @pictures.each do |picture| %>
-    <img src= "<%= picture.image_data %>" alt ="<%= picture.name %>" />
-<% end %>
+<div ng-app="myApp" >
+<div ng-controller="uploadController">
+  <div class="reveal-animation uploadedPics" ng-repeat="pic in pictures">
+  	<a href="#">
+  		<img src="{{ pic.image_data }}"/>
+  	</a>
+  </div>     
+  </div>
+ </div>
 </div>

@@ -1,6 +1,6 @@
 FrameItIn::Application.routes.draw do
   resources :pictures
-
+  get "uploads/:id" =>"pictures#index", as: :myuploads
 
   devise_for :users
 
