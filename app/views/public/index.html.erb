@@ -1,5 +1,5 @@
 <div ng-app="myApp">
-	<a id="scrollLeft" href="/public/{{$scope.id-1}}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></a>
+	<a id="scrollLeft" href="/public/{{($scope.id>1)?$scope.id-1:0}}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></a>
 	<a id="scrollRight" href="/public/{{$scope.id+1}}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></a>
 <div ng-controller="PublicController">
   <div class="reveal-animation uploadedPics" ng-repeat="pic in pictures">

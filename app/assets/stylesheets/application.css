@@ -10,12 +10,12 @@
  *
  *= require_self
  *= require_tree .
- *= require bootswatch/amelia/bootstrap
+ *= require bootswatch/superhero/bootstrap
  */
 #cameraButton{
 	position: absolute !important;
 	left:2em;
-	top:.5em;
+	top:.4em;
 	/*float: left !important;*/
 	/*display: inline !important;*/
 }
