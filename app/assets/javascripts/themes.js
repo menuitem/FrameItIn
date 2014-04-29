@@ -17,10 +17,8 @@ var themes = {
   var changeTheme = function(){
          var themeurl = localStorage.getItem("themeurl") || themes['superhero'];
          var themesheet = $('<link href="'+(themeurl)+'" rel="stylesheet" />');
-          themesheet.appendTo('head');
-          
+         themesheet.appendTo('head');
           $('.theme-link').click(function(){
-            alert(1);
              var themeurl = themes[$(this).attr('data-theme')];
              themesheet.attr('href',themeurl);
              localStorage.setItem("themeurl", themeurl)
