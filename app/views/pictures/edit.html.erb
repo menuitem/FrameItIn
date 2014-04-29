@@ -34,6 +34,7 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit "Save", class: "btn btn-success" %>
+      <%=link_to "Download", @picture.image_data, download: @picture.name , class: "btn btn-success"%>
       <%= link_to 'Cancel', request.referer, class: "btn btn-success" %>
 			<%= link_to 'Delete', picture_path(params[:id]), method: :delete, class: "btn btn-danger" %>
     </div>

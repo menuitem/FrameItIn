@@ -22,6 +22,7 @@
 //= require_tree .
 
 document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have to move loading js to the bottom of page
+  ChangeTheme.changeTheme();
   var video = document.getElementById('monitor');
   function gotStream(stream) {
     if (navigator.mozGetUserMedia) {

@@ -1,3 +1,4 @@
+var ChangeTheme = (function(){
 var themes = {
     "default": "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css",
     "amelia" : "//bootswatch.com/amelia/bootstrap.min.css",
@@ -13,13 +14,19 @@ var themes = {
     "united" : "//bootswatch.com/united/bootstrap.min.css",
     "superhero" : "//bootswatch.com/superhero/bootstrap.min.css"
 }
-$(function(){
-   var themeurl = localStorage.getItem("themeurl") || themes['superhero'];
-   var themesheet = $('<link href="'+(themeurl)+'" rel="stylesheet" />');
-    themesheet.appendTo('head');
-    $('.theme-link').click(function(){
-       var themeurl = themes[$(this).attr('data-theme')];
-       themesheet.attr('href',themeurl);
-       localStorage.setItem("themeurl", themeurl)
-    });
-});
+  var changeTheme = function(){
+         var themeurl = localStorage.getItem("themeurl") || themes['superhero'];
+         var themesheet = $('<link href="'+(themeurl)+'" rel="stylesheet" />');
+          themesheet.appendTo('head');
+          
+          $('.theme-link').click(function(){
+            alert(1);
+             var themeurl = themes[$(this).attr('data-theme')];
+             themesheet.attr('href',themeurl);
+             localStorage.setItem("themeurl", themeurl)
+          });
+        }
+  return {
+    changeTheme: changeTheme
+  }
+})();
