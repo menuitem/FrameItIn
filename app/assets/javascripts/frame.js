@@ -189,15 +189,7 @@
         return linkMenuDiv;
       }
 
-    return{
-      getFileNameDiv: getFileNameDiv,
-      getAlertDiv: getAlertDiv,
-      getFileNameDiv: getFileNameDiv,
-      canvasToImage: canvasToImage,
-      getCanvasFromCamera: getCanvasFromCamera,
-      getLinks: getLinks,
-      
-      takeShot: function(video){
+      var takeShot = function(video){
           if (video.readyState) {
               try {
                   var canvas = getCanvasFromCamera(video);
@@ -228,13 +220,22 @@
                       }
                       menu.hidden=true;
                   });
-                  
-                  // return canvas;
-                } catch (e) {
-                    document.getElementById('splash').hidden = false;
-                    errorMessage.textContent = "Splash! Something went wrong..." + e;
-                }
+              // catch error if video is not running properly
+              } catch (e) {
+                  document.getElementById('splash').hidden = false;
+                  errorMessage.textContent = "Splash! Something went wrong..." + e;
+              }
           }
-        }
       }
+
+    return{
+      getFileNameDiv: getFileNameDiv,
+      getAlertDiv: getAlertDiv,
+      getFileNameDiv: getFileNameDiv,
+      canvasToImage: canvasToImage,
+      getCanvasFromCamera: getCanvasFromCamera,
+      getLinks: getLinks,
+      takeShot: takeShot  
+    }
+
   })();

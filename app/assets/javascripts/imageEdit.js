@@ -1,14 +1,12 @@
 var ImageEdit = (function(){
-	// private
-	// var image = FrameItIn.canvasToImage(canvas);
 	
 	var turnSepia = function(canv) {
-		
+		//applies and Easeljs colour filter to turn image to greyscale
 		var image = FrameItIn.canvasToImage(canv);
 		var bmp = new createjs.Bitmap(image);
     stage = new createjs.Stage(canv);
 		
-		//apply a sepia image to the filter
+		//add a sepia filter
     var sepiaScaleFilter = new createjs.ColorMatrixFilter([
     	0.39, 0.77, 0.19, 0, 0, // red component
       0.35, 0.68, 0.17, 0, 0, // green component
@@ -17,12 +15,13 @@ var ImageEdit = (function(){
     ]); 
       
     bmp.filters = [sepiaScaleFilter];
-    bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
+    bmp.cache(0, 0, image.width*3, image.height*3); 
     stage.addChild(bmp);
     stage.update();    
   }
 	
 	var turnGreyScale = function(canv) {
+		//applies and Easeljs colour filter to turn image to greyscale
  		var image = FrameItIn.canvasToImage(canv);
 		var bmp = new createjs.Bitmap(image),
 			stage = new createjs.Stage(canv);
@@ -34,20 +33,20 @@ var ImageEdit = (function(){
 		]);       
 		bmp.filters = [greyScaleFilter];
 
-		bmp.cache(0, 0, image.width*3, image.height*3); // color filters don't change the bounds.
-		//stage.addChild(bmp);
-		//stage.update();        
+		bmp.cache(0, 0, image.width*3, image.height*3); 
+		stage.addChild(bmp);
+		stage.update();        
 	}
 
 	var returnColour = function(canv){
-		
+		//returns the picture to original state if it has been edited
     var picture = window.origPicture;
     var ctx = canv.getContext('2d');
     ctx.drawImage(picture, 0, 0);
-
   }
 
   var brighten = function(canv) {
+  	//apply an Easeljs color filter to brighten the image
  		var image = FrameItIn.canvasToImage(canv);
 		var bmp = new createjs.Bitmap(image),
 			stage = new createjs.Stage(canv);
@@ -63,6 +62,7 @@ var ImageEdit = (function(){
 	}
 
 	var darken = function(canv) {
+		//apply an Easeljs color filter to darken the image
  		var image = FrameItIn.canvasToImage(canv);
 		var bmp = new createjs.Bitmap(image),
 			stage = new createjs.Stage(canv);
@@ -78,6 +78,7 @@ var ImageEdit = (function(){
 	}
 
   var drawBlackBorder = function(canv){
+  	//draws a clear rectangle with a white border on the canvas element
   	var ctx=canv.getContext("2d");
   	ctx.rect(0, 0, 400, 300);
   	ctx.lineWidth = 40;
@@ -87,20 +88,34 @@ var ImageEdit = (function(){
   }
 
   var drawWhiteBorder = function(canv){
+  	//draws a clear rectangle with a white border on the canvas element
   	var ctx=canv.getContext("2d");
   	ctx.rect(0, 0, 400, 300);
   	ctx.lineWidth = 40;
   	ctx.strokeStyle = 'white';
 		ctx.stroke();
   }
-	
-var downloadPic = function(){
-        //convert canvas to an img, including a url to the image
-        //this url is then used for the download link
-    var picarea = document.getElementById('dropPic');
-    link.setAttribute("download", "testimage.png");
-    link.setAttribute("href", picarea.toDataURL());
+
+  var displayFullScreen = function(canv){
+  	//displays the canvas element in fullscreen mode
+  	//using the screenfull.js API
+  	if (screenfull.enabled) {
+       screenfull.request(canv);
+    }
+    else {
+    	//alert user fullscreen mode is not enabled
+    }
   }
+	
+	//download the image to a file on user's device
+	// var downloadPic = function(){
+ //    //convert canvas to an img, including a url to the image
+ //    //this url is then used for the download link
+ //    var picarea = document.getElementById('dropPic');
+ //    link.setAttribute("download", "testimage.png");
+ //    link.setAttribute("href", picarea.toDataURL());
+ //  }
+
 	return {
 					turnSepia: turnSepia,
 					turnGreyScale: turnGreyScale,
@@ -108,6 +123,8 @@ var downloadPic = function(){
 					drawBlackBorder: drawBlackBorder,
 					drawWhiteBorder: drawWhiteBorder,
 					brighten: brighten,
-					darken: darken
+					darken: darken,
+					displayFullScreen: displayFullScreen
 	}
-})()
+
+})();

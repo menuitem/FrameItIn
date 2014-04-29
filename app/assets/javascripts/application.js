@@ -64,56 +64,55 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
     }else{
       if (t!=null) clearTimeout(t);
       document.getElementById("shootButton").value="Shoot";
-      document.getElementById("cameraButton").classList.remove("deeppink")
-
+      document.getElementById("cameraButton").classList.remove("deeppink");
     }
   } 
-document.getElementById("shootButton")?
-document.getElementById("shootButton").
-addEventListener("click", snapShot, false):{};
 
-document.getElementById("shootButton")?
-document.getElementById("cameraButton").
-addEventListener("click", function(e){
-  e.preventDefault();
-  snapShot();
-}, false):{};
-  // end of snapshot function
+  document.getElementById("shootButton")?
+  document.getElementById("shootButton").
+  addEventListener("click", snapShot, false):{};
+
+  document.getElementById("shootButton")?
+  document.getElementById("cameraButton").
+  addEventListener("click", function(e){
+    e.preventDefault();
+    snapShot();
+  }, false):{};
+
   
 
-//the following uses the screenfull api, and will display a fullscreen, if 
-//supported by the browser
 var elem = document.getElementById('dropPic');
 if (elem){
-//listners to edit pictures area
-//listener to download
+  //listeners to edit pictures area:
+  //listener to save picture to file
   document.getElementById("link").addEventListener('click', function(e){
     var canvas = FrameItIn.canvasToImage(document.getElementById("dropPic"));
     var fileName = FrameItIn.getFileNameDiv("Save", canvas);
     $("#fileNameDiv").html(fileName).hide().slideDown();
-
   }, false);
+
+  //listener to upload the picture to the server and database
   document.getElementById("upload").addEventListener('click', function(e){
     var canvas = FrameItIn.canvasToImage(document.getElementById("dropPic"));
     var fileName = FrameItIn.getFileNameDiv("Upload", canvas);
     $("#fileNameDiv").html(fileName).hide().slideDown();
-
   }, false);
-  //return to colour
+
+  //listener to return to colour
   document.getElementById("returncolour").addEventListener('click', function(e){
     e.preventDefault();
     var canv = document.getElementById("dropPic");
     ImageEdit.returnColour(canv);
   }, false);
   
-  //listener to greyscale
+  //listener to turn picture to greyscale
   document.getElementById("convertgrey").addEventListener('click', function(e){
     e.preventDefault();
     var canv = document.getElementById("dropPic");
     ImageEdit.turnGreyScale(canv);
   }, false);
   
-  //listener to Sepia
+  //listener to turn picture to Sepia
   document.getElementById("convertsepia").addEventListener('click', function(e){
     e.preventDefault();
     var canv = document.getElementById("dropPic");
@@ -148,11 +147,14 @@ if (elem){
     ImageEdit.drawWhiteBorder(canv);
   }, false);
 
-  document.getElementById('fullscreen').addEventListener('click', function () {
-    if (screenfull.enabled) {
-      screenfull.request(elem);
-    }
-  });
-  }
+  //the following uses the screenfull api, and will display a fullscreen, if 
+  //supported by the browser
+  document.getElementById('fullscreen').addEventListener('click', function (e) {
+    e.preventDefault();
+    var canv = document.getElementById("dropPic");
+    ImageEdit.displayFullScreen(canv);
+  }, false);
+  
+}
 
 });//end DOMContentLoaded
