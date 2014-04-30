@@ -1,10 +1,10 @@
 <div ng-app="myApp">
-	<a id="scrollLeft" href="/pictures/{{($scope.id>1)?$scope.id-1:0}}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></a>
-	<a id="scrollRight" href="/pictures/{{$scope.id+1}}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></a>
+	<a id="scrollLeft" ng-href="/pictures/{{($scope.id>1)?$scope.id-1:0}}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></a>
+	<a id="scrollRight" ng-href="/pictures/{{$scope.id+1}}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></a>
 	<div ng-controller="UploadController" id="pics">
   	<div class="reveal-animation uploadedPics" ng-repeat="pic in pictures">
-  		<a href="/pictures/{{pic.id}}/edit"> 
-  			<img src="{{ pic.image_data }}"/></a>
+  		<a ng-href="/pictures/{{pic.id}}/edit"> 
+  			<img ng-src="{{ pic.image_data }}"/></a>
   	</div>     
   </div>
 </div>
