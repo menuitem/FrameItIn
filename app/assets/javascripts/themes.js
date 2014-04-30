@@ -1,6 +1,6 @@
 var ChangeTheme = (function(){
 var themes = {
-    "default": "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css",
+    "default": "//netdna.bootstrapcdn.com/bootstrap/3.1.2/css/bootstrap.min.css",
     "amelia" : "//bootswatch.com/amelia/bootstrap.min.css",
     "cerulean" : "//bootswatch.com/cerulean/bootstrap.min.css",
     "cosmo" : "//bootswatch.com/cosmo/bootstrap.min.css",
