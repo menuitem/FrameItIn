@@ -15,14 +15,16 @@ var themes = {
     "superhero" : "//bootswatch.com/superhero/bootstrap.min.css"
 }
   var changeTheme = function(){
+        //get theme from local storage for initial loading, or use a default if none exists
          var themeurl = localStorage.getItem("themeurl") || themes['superhero'];
          var themesheet = $('<link href="'+(themeurl)+'" rel="stylesheet" />');
           themesheet.appendTo('head');
           
+          //apply click event listener for changing themes
           $('.theme-link').click(function(){
-            alert(1);
              var themeurl = themes[$(this).attr('data-theme')];
              themesheet.attr('href',themeurl);
+             //add the changed theme to local storage
              localStorage.setItem("themeurl", themeurl)
           });
         }
