@@ -199,7 +199,7 @@
                   smallDivImage.setAttribute("style","height:120px");
                   smallDivImage.setAttribute("style", "display:inline-block;position:relative;");
                   image.classList.add("smallpic");
-                  var links = getLinks(12); //button size in px
+                  var links = getLinks(20); //button size in px
                   smallDivImage.appendChild(image);
                   $(smallDivImage).append(links);
                   document.getElementById("snapshots").appendChild(smallDivImage);
