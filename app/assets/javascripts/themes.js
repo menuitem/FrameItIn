@@ -1,3 +1,5 @@
+
+//function to change the Bootswatch theme and store in local storage
 var ChangeTheme = (function(){
 var themes = {
     "default": "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css",

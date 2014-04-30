@@ -107,15 +107,6 @@ var ImageEdit = (function(){
     }
   }
 	
-	//download the image to a file on user's device
-	// var downloadPic = function(){
- //    //convert canvas to an img, including a url to the image
- //    //this url is then used for the download link
- //    var picarea = document.getElementById('dropPic');
- //    link.setAttribute("download", "testimage.png");
- //    link.setAttribute("href", picarea.toDataURL());
- //  }
-
 	return {
 					turnSepia: turnSepia,
 					turnGreyScale: turnGreyScale,

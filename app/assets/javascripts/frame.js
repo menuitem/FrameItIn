@@ -16,6 +16,7 @@
 
   var FrameItIn = (function(){
 
+      //function to create alert message div
       var getAlertDiv = function(message){
         var alerter = document.createElement("div");
         alerter.classList.add("alert");
@@ -30,10 +31,10 @@
         var strEl = document.createElement("strong");
             strEl.textContent="Alert: " + message;
             alerter.appendChild(strEl)
-            // alerter.textContent=message 
         return alerter;
       }
 
+      //function to create and display input box for filename
       var getFileNameDiv = function(action, imgSrc){
         var fileNameDiv = document.createElement('div');
           fileNameDiv.setAttribute("id", "fixed-top");
@@ -94,6 +95,7 @@
         return fileNameDiv;
       }
 
+      //function to use an ajax post request to send pic to database on server
       var uploadToCloud = function(imgSrc, fileName){
           $("body").css("cursor", "progress");
             var data = {
@@ -189,6 +191,7 @@
         return linkMenuDiv;
       }
 
+      //function to capture video stream and convert into snapshot pictures
       var takeShot = function(video){
           if (video.readyState) {
               try {

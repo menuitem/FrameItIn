@@ -1,3 +1,4 @@
+//using ngAnimate Angular directive to retrieve pictures from database and display on page
 angular.module('myApp', ['ngRoute','ngAnimate']) 
 .controller('UploadController',['$scope','$http','$routeParams','$location',function($scope,$http,$routeParams,$location) {
   var id = $location.$$absUrl.split('/').pop();

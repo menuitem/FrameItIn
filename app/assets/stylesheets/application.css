@@ -154,8 +154,7 @@ footer{
   transition-duration: 0.7s;
 
 }
-<<<<<<< HEAD
-=======
+
 .reveal-animation.ng-enter {
   -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
   animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
@@ -168,4 +167,4 @@ footer{
   from { opacity:0; }
   to { opacity:1; }
 }
->>>>>>> 058e3123ffa4ad1add8c14c603463237fccb7cd1
+

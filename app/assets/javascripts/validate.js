@@ -1,5 +1,7 @@
+//function to validate a string that the user enters in an inputbox for a filename
 var Validate = (function(name){
             return {
+                //give error if not correct length or characters
                 fileName : function(name){
                     var reg = /^[a-z\s_0-9]+$/i;
                     // var matches = name.match(reg);
@@ -10,6 +12,7 @@ var Validate = (function(name){
                         throw new Error ("Only letters, numbers, spaces.");
                     }
                 },
+                //give an error if user is not logged in before they upload to database
                 currentUser: function(){
                     var cU = document.getElementById("user");
                     if (cU==null) {

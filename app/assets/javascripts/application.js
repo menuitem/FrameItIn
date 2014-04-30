@@ -48,14 +48,16 @@ document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have
       takeInfinitiveShots();
     },1000);
   }
-  var takeOneShot = function(){
-      FrameItIn.takeShot(video);
-  }
-  var takeXShot = function(x){
-    for (i=0; i<x;i++){
-      FrameItIn.takeShot(video);
-    }
-  }
+
+  //future development:
+  // var takeOneShot = function(){
+  //     FrameItIn.takeShot(video);
+  // }
+  // var takeXShot = function(x){
+  //   for (i=0; i<x;i++){
+  //     FrameItIn.takeShot(video);
+  //   }
+  // }
     
   var snapShot = function(m) {
     if(document.getElementById("shootButton").value == "Shoot"){
