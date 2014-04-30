@@ -12,9 +12,20 @@
  *= require_tree .
  *= require bootswatch/superhero/bootstrap
  */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/bootswatch/fonts/glyphicons-halflings-regular.eot');
+  src: url('../assets/bootswatch/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+       url('../assets/bootswatch/fonts/glyphicons-halflings-regular.woff') format('woff'),
+       url('../assets/bootswatch/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+       url('../assets/bootswatch/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+#picture_public{
+	cursor: pointer;
+}
 #cameraButton{
 	position: absolute !important;
-	left:2em;
+	left:1em;
 	top:.4em;
 	/*float: left !important;*/
 	/*display: inline !important;*/
@@ -143,3 +154,18 @@ footer{
   transition-duration: 0.7s;
 
 }
+<<<<<<< HEAD
+=======
+.reveal-animation.ng-enter {
+  -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
+  animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+}
+@-webkit-keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+>>>>>>> 058e3123ffa4ad1add8c14c603463237fccb7cd1

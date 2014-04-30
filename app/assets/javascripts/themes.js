@@ -1,6 +1,6 @@
 var ChangeTheme = (function(){
 var themes = {
-    "default": "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css",
+    "default": "//netdna.bootstrapcdn.com/bootstrap/3.1.2/css/bootstrap.min.css",
     "amelia" : "//bootswatch.com/amelia/bootstrap.min.css",
     "cerulean" : "//bootswatch.com/cerulean/bootstrap.min.css",
     "cosmo" : "//bootswatch.com/cosmo/bootstrap.min.css",
@@ -20,14 +20,15 @@ var themes = {
          var themesheet = $('<link href="'+(themeurl)+'" rel="stylesheet" />');
           themesheet.appendTo('head');
           
-          //apply click event listener for changing themes
-          $('.theme-link').click(function(){
+        //apply click event listener for changing themes
+        $('.theme-link').click(function(){
              var themeurl = themes[$(this).attr('data-theme')];
              themesheet.attr('href',themeurl);
              //add the changed theme to local storage
              localStorage.setItem("themeurl", themeurl)
           });
         }
+        
   return {
     changeTheme: changeTheme
   }

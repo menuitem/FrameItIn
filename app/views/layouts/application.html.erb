@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+   <!--[if IE]><meta  http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "FrameItIn" %></title>
     <%= csrf_meta_tags %>
@@ -54,8 +54,9 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to 'FrameInIt', root_path, class: "navbar_brand glyphicon theme-link" %></li>
-            <li id="user"><%= link_to "Public pics", public_path(0), class: "glyphicon glyphicon-globe" %></li>
-            <li class="dropdown glyphicon">
+            <li><%= link_to "Public pics", public_path(0), class: "glyphicon glyphicon-globe" %></li>
+            <% if !current_user %>
+              <li class="dropdown glyphicon">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#" data-theme="default" class="theme-link">Default</a></li>
@@ -73,11 +74,28 @@
                 <li><a href="#" data-theme="united" class="theme-link">United</a></li>
               </ul>
             </li>
-            <% if !current_user %>
               <li><%= link_to 'Sign In', new_user_session_path, class: "glyphicon" %></li>
             <% else %>
-              <li><%= link_to current_user.email, edit_user_registration_path, class: "glyphicon glyphicon-user" %></li>
               <li id="user"><%= link_to "My pics", myuploads_path(0), class: "glyphicon glyphicon-cloud" %></li>
+              <li class="dropdown glyphicon">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" data-theme="default" class="theme-link">Default</a></li>
+                <li><a href="#" data-theme="amelia" class="theme-link">Amelia</a></li>
+                <li><a href="#" data-theme="cerulean" class="theme-link">Cerulean</a></li>
+                <li><a href="#" data-theme="cosmo" class="theme-link">Cosmo</a></li>
+                <li><a href="#" data-theme="cyborg" class="theme-link">Cyborg</a></li>
+                <li><a href="#" data-theme="flatly" class="theme-link">Flatly</a></li>
+                <li><a href="#" data-theme="journal" class="theme-link">Journal</a></li>
+                <li><a href="#" data-theme="readable" class="theme-link">Readable</a></li>
+                <li><a href="#" data-theme="simplex" class="theme-link">Simplex</a></li>
+                <li><a href="#" data-theme="slate" class="theme-link">Slate</a></li>
+                <li><a href="#" data-theme="superhero" class="theme-link">SuperHero</a></li>
+                <li><a href="#" data-theme="spacelab" class="theme-link">Spacelab</a></li>
+                <li><a href="#" data-theme="united" class="theme-link">United</a></li>
+              </ul>
+            </li>
+              <li><%= link_to current_user.email, edit_user_registration_path, class: "glyphicon glyphicon-user" %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "glyphicon" %></li>
             <% end %>
           </ul>

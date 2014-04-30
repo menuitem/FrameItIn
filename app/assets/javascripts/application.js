@@ -11,14 +11,14 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap/dist/js/bootstrap
+//= require slimScroll/jquery.slimscroll
 //= require angular/angular
 //= require angular-route/angular-route
 //= require angular-animate/angular-animate
-//= require EaselJS/lib/easeljs-0.7.1.min
 //= require screenfull/dist/screenfull
-//= require slimScroll/jquery.slimscroll
-//= require jquery_ujs
+//= require EaselJS/lib/easeljs-0.7.1.min
 //= require_tree .
 
 document.addEventListener("DOMContentLoaded", function(event) { //so we dnt have to move loading js to the bottom of page
